@@ -1,0 +1,115 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+# The editor opens directly to the single document
+collections:
+  - name: "settings"
+    label: "Website inhoud / Content"
+    files:
+
+      # ── GENERAL ──────────────────────────────────────────────────────────
+      - name: "general"
+        label: "📋 Algemeen / General"
+        file: "content/general.json"
+        format: json
+        fields:
+          - { label: "Telefoon 1", name: "phone1", widget: "string", default: "016 / 20.20.56" }
+          - { label: "Telefoon 2 (WhatsApp)", name: "phone2", widget: "string", default: "0485 / 73.63.62" }
+          - { label: "Adres", name: "address", widget: "string", default: "Parijsstraat 39, 3000 Leuven" }
+
+      # ── OPENING HOURS ─────────────────────────────────────────────────────
+      - name: "hours"
+        label: "🕐 Openingsuren / Opening Hours"
+        file: "content/hours.json"
+        format: json
+        fields:
+          - { label: "Middag (NL)", name: "middag_nl", widget: "string", default: "Ma–Vr: 12:00–13:15" }
+          - { label: "Middag (EN)", name: "middag_en", widget: "string", default: "Mon–Fri: 12:00–13:15" }
+          - { label: "Avond (NL)", name: "avond_nl", widget: "string", default: "Ma–Vr: 18:00–20:45" }
+          - { label: "Avond (EN)", name: "avond_en", widget: "string", default: "Mon–Fri: 18:00–20:45" }
+          - { label: "Weekend (NL)", name: "weekend_nl", widget: "string", default: "Za, Zo: Gesloten" }
+          - { label: "Weekend (EN)", name: "weekend_en", widget: "string", default: "Sat, Sun: Closed" }
+          - { label: "Feestdagen (NL)", name: "feestdagen_nl", widget: "string", default: "Feestdagen: Gesloten" }
+          - { label: "Feestdagen (EN)", name: "feestdagen_en", widget: "string", default: "Public holidays: Closed" }
+
+      # ── MENU: SUGGESTIES ──────────────────────────────────────────────────
+      - name: "menu_suggesties"
+        label: "⭐ Menu – Suggesties"
+        file: "content/menu_suggesties.json"
+        format: json
+        fields:
+          - label: "Gerechten / Dishes"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Naam (NL/IT)", name: "name", widget: "string" }
+              - { label: "Ingrediënten NL", name: "desc_nl", widget: "text" }
+              - { label: "Ingredients EN", name: "desc_en", widget: "text" }
+              - { label: "Prijs (bijv. 16.00)", name: "price", widget: "string" }
+              - { label: "KV prijs (optioneel, bijv. KV €23)", name: "kv", widget: "string", required: false }
+
+      # ── MENU: VEGETARISCH ─────────────────────────────────────────────────
+      - name: "menu_vegetarisch"
+        label: "🌿 Menu – Vegetarisch"
+        file: "content/menu_vegetarisch.json"
+        format: json
+        fields:
+          - label: "Gerechten / Dishes"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Naam (NL/IT)", name: "name", widget: "string" }
+              - { label: "Ingrediënten NL", name: "desc_nl", widget: "text" }
+              - { label: "Ingredients EN", name: "desc_en", widget: "text" }
+              - { label: "Prijs (bijv. 16.00)", name: "price", widget: "string" }
+              - { label: "KV prijs (optioneel)", name: "kv", widget: "string", required: false }
+
+      # ── MENU: VLEES ───────────────────────────────────────────────────────
+      - name: "menu_vlees"
+        label: "🥩 Menu – Vlees / Meat"
+        file: "content/menu_vlees.json"
+        format: json
+        fields:
+          - label: "Gerechten / Dishes"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Naam (NL/IT)", name: "name", widget: "string" }
+              - { label: "Ingrediënten NL", name: "desc_nl", widget: "text" }
+              - { label: "Ingredients EN", name: "desc_en", widget: "text" }
+              - { label: "Prijs (bijv. 16.00)", name: "price", widget: "string" }
+              - { label: "KV prijs (optioneel)", name: "kv", widget: "string", required: false }
+
+      # ── MENU: VIS ─────────────────────────────────────────────────────────
+      - name: "menu_vis"
+        label: "🐟 Menu – Vis / Fish"
+        file: "content/menu_vis.json"
+        format: json
+        fields:
+          - label: "Gerechten / Dishes"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Naam (NL/IT)", name: "name", widget: "string" }
+              - { label: "Ingrediënten NL", name: "desc_nl", widget: "text" }
+              - { label: "Ingredients EN", name: "desc_en", widget: "text" }
+              - { label: "Prijs (bijv. 16.00)", name: "price", widget: "string" }
+              - { label: "KV prijs (optioneel)", name: "kv", widget: "string", required: false }
+
+      # ── MENU: SUPPLEMENTEN ────────────────────────────────────────────────
+      - name: "menu_extra"
+        label: "➕ Menu – Supplementen / Extras"
+        file: "content/menu_extra.json"
+        format: json
+        fields:
+          - label: "Supplementen"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Naam NL", name: "name_nl", widget: "string" }
+              - { label: "Name EN", name: "name_en", widget: "string" }
+              - { label: "Prijs (bijv. 2.00)", name: "price", widget: "string" }
