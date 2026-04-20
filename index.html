@@ -3798,5 +3798,151 @@ if (window.netlifyIdentity) {
   });
 }
 </script>
+<script>
+/* ══════════════════════════════════════════════════════
+   CMS CONTENT LOADER
+   Fetches JSON from /content/ and updates the live site
+══════════════════════════════════════════════════════ */
+(function() {
+  function fetchJSON(path, cb) {
+    var x = new XMLHttpRequest();
+    x.open('GET', path + '?v=' + Date.now(), true);
+    x.onload = function() {
+      if (x.status === 200) { try { cb(JSON.parse(x.responseText)); } catch(e) {} }
+    };
+    x.send();
+  }
+
+  function setText(sel, val) {
+    if (!val) return;
+    document.querySelectorAll(sel).forEach(function(e) { e.textContent = val; });
+  }
+  function setHTML(sel, val) {
+    if (!val) return;
+    document.querySelectorAll(sel).forEach(function(e) { e.innerHTML = val; });
+  }
+
+  /* ── GENERAL ── */
+  fetchJSON('/content/general.json', function(d) {
+    if (d.phone1) document.querySelectorAll('a[href^="tel:+3216"]').forEach(function(e){ e.textContent = d.phone1; });
+    if (d.phone2) document.querySelectorAll('a[href^="tel:+32485"]').forEach(function(e){ e.textContent = d.phone2; });
+  });
+
+  /* ── HOURS ── */
+  fetchJSON('/content/hours.json', function(d) {
+    /* open-time cells in table */
+    document.querySelectorAll('.hours-table td:nth-child(2)').forEach(function(td) {
+      if (!td.querySelector('.badge-open')) return;
+      var t1 = (d.middag_nl||'').replace(/^Ma.Vr: /,'');
+      var t2 = (d.avond_nl||'').replace(/^Ma.Vr: /,'');
+      td.innerHTML = t1 + ' &amp; ' + t2 + ' <span class="hours-badge badge-open">Open</span>';
+    });
+    /* footer */
+    setText('[data-tx="footer-hours1"]', d.middag_nl);
+    setText('[data-tx="footer-hours2"]', d.avond_nl);
+    setText('[data-tx="footer-hours3"]', d.weekend_nl);
+    setText('[data-tx="footer-hours4"]', d.feestdagen_nl);
+    /* info strip */
+    var ih = document.querySelector('[data-tx="info-hours-val"]');
+    if (ih && d.middag_nl) {
+      ih.innerHTML = d.middag_nl + ' &amp; ' + (d.avond_nl||'').replace(/^Ma.Vr: /,'') + '<br>Za, Zo &amp; feestdagen: gesloten';
+    }
+    /* patch TRANSLATIONS for EN switching */
+    if (typeof TRANSLATIONS !== 'undefined') {
+      TRANSLATIONS.nl['footer-hours1'] = d.middag_nl||'';
+      TRANSLATIONS.nl['footer-hours2'] = d.avond_nl||'';
+      TRANSLATIONS.nl['footer-hours3'] = d.weekend_nl||'';
+      TRANSLATIONS.nl['footer-hours4'] = d.feestdagen_nl||'';
+      TRANSLATIONS.en['footer-hours1'] = d.middag_en||'';
+      TRANSLATIONS.en['footer-hours2'] = d.avond_en||'';
+      TRANSLATIONS.en['footer-hours3'] = d.weekend_en||'';
+      TRANSLATIONS.en['footer-hours4'] = d.feestdagen_en||'';
+    }
+  });
+
+  /* ── MENU TAB BUILDER ── */
+  function buildTab(tabId, items) {
+    var panel = document.getElementById('tab-' + tabId);
+    if (!panel) return;
+    var container = panel.querySelector('.menu-items');
+    if (!container) return;
+    container.innerHTML = '';
+    items.forEach(function(item) {
+      var price = parseFloat(item.price || 0);
+      var fmt = '€' + price.toFixed(2).replace('.', ',');
+      var kv = item.kv ? '<span class="menu-item-kv">' + item.kv + '</span>' : '';
+      var isAddon = (item.name||'').indexOf('Extra Burrata') !== -1;
+      var descKey = 'cms-' + tabId + '-' + Math.random().toString(36).slice(2);
+
+      if (typeof TRANSLATIONS !== 'undefined') {
+        TRANSLATIONS.nl[descKey] = item.desc_nl || '';
+        TRANSLATIONS.en[descKey] = item.desc_en || '';
+      }
+
+      var div = document.createElement('div');
+      div.className = isAddon ? 'menu-item menu-item-addon' : 'menu-item';
+      var badge = isAddon ? ' <span class="addon-badge" data-tx="addon-badge">+ Toevoeging</span>' : '';
+      div.innerHTML =
+        '<div class="menu-item-info">' +
+          '<div class="menu-item-name">' + (item.name||'') + badge + '</div>' +
+          '<div class="menu-item-desc" data-tx="' + descKey + '">' + (item.desc_nl||'') + '</div>' +
+        '</div>' +
+        '<div class="menu-item-price">' + (isAddon?'+ ':'') + fmt + kv + '</div>' +
+        '<button class="add-to-cart" aria-label="Toevoegen">+</button>';
+
+      var pv = price, nm = item.name||'';
+      div.querySelector('.add-to-cart').addEventListener('click', function() {
+        if (typeof addToCart === 'function') addToCart(this, nm, pv);
+      });
+      container.appendChild(div);
+    });
+  }
+
+  function buildSupps(items) {
+    var panel = document.getElementById('tab-extra');
+    if (!panel) return;
+    var grid = panel.querySelector('.supplement-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    items.forEach(function(item) {
+      var price = parseFloat(item.price || 0);
+      var fmt = '€' + price.toFixed(2).replace('.', ',');
+      var key = 'supp-cms-' + Math.random().toString(36).slice(2);
+      if (typeof TRANSLATIONS !== 'undefined') {
+        TRANSLATIONS.nl[key] = item.name_nl || '';
+        TRANSLATIONS.en[key] = item.name_en || '';
+      }
+      var div = document.createElement('div');
+      div.className = 'supplement-item';
+      div.innerHTML =
+        '<span class="price">' + fmt + '</span>' +
+        '<span class="name" data-tx="' + key + '">' + (item.name_nl||'') + '</span>' +
+        '<button class="supp-add-btn" aria-label="Toevoegen">+</button>';
+      var pv = price, nm = item.name_nl||'';
+      div.querySelector('.supp-add-btn').addEventListener('click', function() {
+        if (typeof addToCart === 'function') addToCart(this, nm, pv);
+      });
+      grid.appendChild(div);
+    });
+  }
+
+  /* Load all menu tabs */
+  [
+    ['menu_suggesties','suggestie'],
+    ['menu_vegetarisch','vegetarisch'],
+    ['menu_vlees','vlees'],
+    ['menu_vis','vis']
+  ].forEach(function(pair) {
+    fetchJSON('/content/' + pair[0] + '.json', function(d) {
+      if (d && d.items) buildTab(pair[1], d.items);
+    });
+  });
+
+  fetchJSON('/content/menu_extra.json', function(d) {
+    if (d && d.items) buildSupps(d.items);
+  });
+
+})();
+</script>
 </body>
 </html>
