@@ -1,0 +1,81 @@
+{
+  "items": [
+    {
+      "name": "🍤 Paesana agli Scampi",
+      "desc_nl": "Verse room, kerstomatensaus, gekookte hesp, paddestoelen, look, ajuin, peterselie, PARMIGIANO REGGIANO D.O.P, witte wijn, scampi's, zwarte peper",
+      "desc_en": "Fresh cream, cherry tomato sauce, cooked ham, mushrooms, garlic, onion, parsley, PARMIGIANO REGGIANO D.O.P, white wine, king prawns, black pepper",
+      "price": "23.00",
+      "kv": ""
+    },
+    {
+      "name": "🐟 Tonijn",
+      "desc_nl": "Kerstomatensaus, ajuin, kappers, olijven, tonijn, peterselie, zwarte peper, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Cherry tomato sauce, onion, capers, olives, tuna, parsley, black pepper, PARMIGIANO REGGIANO D.O.P",
+      "price": "17.00",
+      "kv": "KV €23"
+    },
+    {
+      "name": "🐟🥦 Broccoli met Tonijn",
+      "desc_nl": "Tomatensaus, verse room, broccoli, tonijn, zwarte peper, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Tomato sauce, fresh cream, broccoli, tuna, black pepper, PARMIGIANO REGGIANO D.O.P",
+      "price": "17.00",
+      "kv": "KV €23"
+    },
+    {
+      "name": "🐟 Alla Puttanesca",
+      "desc_nl": "Kerstomatensaus, olijven, kappers, look, ajuin, ansjovis, basilicum, peterselie, zwarte peper, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Cherry tomato sauce, olives, capers, garlic, onion, anchovies, basil, parsley, black pepper, PARMIGIANO REGGIANO D.O.P",
+      "price": "18.00",
+      "kv": ""
+    },
+    {
+      "name": "🍤🎃 Pompoen met Scampi",
+      "desc_nl": "Pompoen, look, ajuin, verse room, kerstomaten, scampi, peterselie, pilipili, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Pumpkin, garlic, onion, fresh cream, cherry tomatoes, king prawns, parsley, chilli, PARMIGIANO REGGIANO D.O.P",
+      "price": "18.00",
+      "kv": ""
+    },
+    {
+      "name": "🦑🦀🐚 Zeevruchten (Frutti di Mare)",
+      "desc_nl": "Kerstomatensaus, look, peterselie, zeevruchten, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Cherry tomato sauce, garlic, parsley, seafood mix, PARMIGIANO REGGIANO D.O.P",
+      "price": "18.00",
+      "kv": ""
+    },
+    {
+      "name": "🍤 Scampi",
+      "desc_nl": "Kerstomatensaus, look, peterselie, courgettes, scampi's, PARMIGIANO REGGIANO D.O.P, zwarte peper",
+      "desc_en": "Cherry tomato sauce, garlic, parsley, courgette, king prawns, PARMIGIANO REGGIANO D.O.P, black pepper",
+      "price": "18.00",
+      "kv": "KV €24"
+    },
+    {
+      "name": "🍤🦑🐚 Zeevruchten & Scampi",
+      "desc_nl": "Kerstomatensaus, look, peterselie, grote scampi's, zeevruchten, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Cherry tomato sauce, garlic, parsley, large king prawns, seafood mix, PARMIGIANO REGGIANO D.O.P",
+      "price": "18.00",
+      "kv": ""
+    },
+    {
+      "name": "🐟 Zalm",
+      "desc_nl": "Zalm, ajuin, room, broccoli, curcuma, zwarte peper, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Salmon, onion, cream, broccoli, turmeric, black pepper, PARMIGIANO REGGIANO D.O.P",
+      "price": "19.00",
+      "kv": ""
+    },
+    {
+      "name": "🐚 Linguine con le Vongole",
+      "desc_nl": "Olijfolie, look, peterselie, kerstomaatjes, schelpen",
+      "desc_en": "Olive oil, garlic, parsley, cherry tomatoes, clams",
+      "price": "20.00",
+      "kv": ""
+    },
+    {
+      "name": "🍤 Scampi Shiitake",
+      "desc_nl": "Scampi, shiitake, look, olijfolie, room, peper, curcuma, peterselie, zwarte peper, Parmezaan kaas",
+      "desc_en": "King prawns, shiitake, garlic, olive oil, cream, pepper, turmeric, parsley, black pepper, Parmesan cheese",
+      "price": "20.00",
+      "kv": ""
+    }
+  ]
+}

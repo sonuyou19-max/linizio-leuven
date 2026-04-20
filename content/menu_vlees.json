@@ -1,0 +1,109 @@
+{
+  "items": [
+    {
+      "name": "🥩 Panna e Prosciutto",
+      "desc_nl": "Gekookte hesp, verse room, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Cooked ham, fresh cream, PARMIGIANO REGGIANO D.O.P",
+      "price": "16.00",
+      "kv": ""
+    },
+    {
+      "name": "🥩 Amatriciana",
+      "desc_nl": "Tomatensaus, ajuin, spek, verse tomaten, basilicum, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Tomato sauce, onion, bacon, fresh tomatoes, basil, PARMIGIANO REGGIANO D.O.P",
+      "price": "16.00",
+      "kv": "KV €23"
+    },
+    {
+      "name": "🥩 Bolognese",
+      "desc_nl": "Tomatensaus, gehakt rundsvlees, gehakt varkensvlees, selder, wortels, ajuin, muskaatnoot, peper, boter, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Tomato sauce, minced beef, minced pork, celery, carrots, onion, nutmeg, pepper, butter, PARMIGIANO REGGIANO D.O.P",
+      "price": "16.00",
+      "kv": "KV €23"
+    },
+    {
+      "name": "🥩 Arrabbiata con Salame",
+      "desc_nl": "Kerstomatensaus, look, pikante salami, pilipili, basilicum, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Cherry tomato sauce, garlic, spicy salami, chilli, basil, PARMIGIANO REGGIANO D.O.P",
+      "price": "17.00",
+      "kv": ""
+    },
+    {
+      "name": "🥩 Carbonara con Pomodoro",
+      "desc_nl": "Tomatensaus, spek, ajuin, gepasteuriseerd eieren, PARMIGIANO REGGIANO D.O.P, verse room, peterselie, zwarte peper",
+      "desc_en": "Tomato sauce, bacon, onion, pasteurised eggs, PARMIGIANO REGGIANO D.O.P, fresh cream, parsley, black pepper",
+      "price": "17.00",
+      "kv": "KV €23"
+    },
+    {
+      "name": "🥩 Panna, Prosciutto e Funghi",
+      "desc_nl": "Gekookte hesp, verse room, champignons, peterselie, PARMIGIANO REGGIANO D.O.P, zwarte peper",
+      "desc_en": "Cooked ham, fresh cream, mushrooms, parsley, PARMIGIANO REGGIANO D.O.P, black pepper",
+      "price": "17.00",
+      "kv": ""
+    },
+    {
+      "name": "🥩 Carbonara all'Italiana",
+      "desc_nl": "Spek, ajuin, gepasteuriseerd eieren, PARMIGIANO REGGIANO D.O.P, verse room, peterselie, zwarte peper",
+      "desc_en": "Bacon, onion, pasteurised eggs, PARMIGIANO REGGIANO D.O.P, fresh cream, parsley, black pepper",
+      "price": "17.00",
+      "kv": "KV €23"
+    },
+    {
+      "name": "🥩 Diavola",
+      "desc_nl": "Tomatensaus, verse room, champignons, spek, pilipili, peterselie, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Tomato sauce, fresh cream, mushrooms, bacon, chilli, parsley, PARMIGIANO REGGIANO D.O.P",
+      "price": "17.00",
+      "kv": "KV €23"
+    },
+    {
+      "name": "🥩 Chef",
+      "desc_nl": "Tomatensaus, look, ajuin, spek, broccoli, verse tomaten, basilicum, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Tomato sauce, garlic, onion, bacon, broccoli, fresh tomatoes, basil, PARMIGIANO REGGIANO D.O.P",
+      "price": "17.00",
+      "kv": "KV €23"
+    },
+    {
+      "name": "🥩 Paesana",
+      "desc_nl": "Verse room, kerstomatensaus, gekookte hesp, champignons, look, peterselie, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Fresh cream, cherry tomato sauce, cooked ham, mushrooms, garlic, parsley, PARMIGIANO REGGIANO D.O.P",
+      "price": "17.00",
+      "kv": "KV €23"
+    },
+    {
+      "name": "🥩 Inizio",
+      "desc_nl": "Bolognese, verse room, zwarte peper, muskaatnoot, ajuin in witte wijn, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Bolognese, fresh cream, black pepper, nutmeg, onion in white wine, PARMIGIANO REGGIANO D.O.P",
+      "price": "17.00",
+      "kv": "KV €23"
+    },
+    {
+      "name": "🥩 American Bar",
+      "desc_nl": "Tomatensaus, spek, ajuin, gepasteuriseerd eieren, verse room, peterselie, zwarte peper, pesto, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Tomato sauce, bacon, onion, pasteurised eggs, fresh cream, parsley, black pepper, pesto, PARMIGIANO REGGIANO D.O.P",
+      "price": "18.00",
+      "kv": "KV €24"
+    },
+    {
+      "name": "🥩 Italian Bar",
+      "desc_nl": "Spek, ajuin, gepasteuriseerd eieren, verse room, peterselie, zwarte peper, pesto, parmezaanschilfers, PARMIGIANO REGGIANO D.O.P",
+      "desc_en": "Bacon, onion, pasteurised eggs, fresh cream, parsley, black pepper, pesto, Parmesan shavings, PARMIGIANO REGGIANO D.O.P",
+      "price": "18.00",
+      "kv": "KV €24"
+    },
+    {
+      "name": "🥩 Origineel Carbonara",
+      "desc_nl": "Guanciale, gepasteuriseerd eieren, Pecorino",
+      "desc_en": "Guanciale, pasteurised eggs, Pecorino",
+      "price": "18.00",
+      "kv": ""
+    },
+    {
+      "name": "🥩 Origineel Amatriciana",
+      "desc_nl": "Guanciale, kerstomaatjes, tomatensaus, een snuifje peper, Pecorino kaas",
+      "desc_en": "Guanciale, cherry tomatoes, tomato sauce, a pinch of pepper, Pecorino cheese",
+      "price": "18.00",
+      "kv": ""
+    }
+  ]
+}
