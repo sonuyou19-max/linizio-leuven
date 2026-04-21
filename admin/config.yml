@@ -49,8 +49,8 @@ collections:
               - { label: "Naam (NL/IT)", name: "name", widget: "string" }
               - { label: "Ingrediënten NL", name: "desc_nl", widget: "text" }
               - { label: "Ingredients EN", name: "desc_en", widget: "text" }
-              - { label: "Prijs (bijv. 16.00)", name: "price", widget: "string" }
-              - { label: "KV prijs (optioneel, bijv. KV €23)", name: "kv", widget: "string", required: false }
+              - { label: "Prijs (€)", name: "price", widget: "number", value_type: "float", min: 0, max: 100, step: 0.50 }
+              - { label: "KV prijs (optioneel — bijv: KV €23)", name: "kv", widget: "string", required: false, hint: "Laat leeg als er geen koppelverkoop is" }
 
       # ── MENU: VEGETARISCH ─────────────────────────────────────────────────
       - name: "menu_vegetarisch"
@@ -65,8 +65,8 @@ collections:
               - { label: "Naam (NL/IT)", name: "name", widget: "string" }
               - { label: "Ingrediënten NL", name: "desc_nl", widget: "text" }
               - { label: "Ingredients EN", name: "desc_en", widget: "text" }
-              - { label: "Prijs (bijv. 16.00)", name: "price", widget: "string" }
-              - { label: "KV prijs (optioneel)", name: "kv", widget: "string", required: false }
+              - { label: "Prijs (€)", name: "price", widget: "number", value_type: "float", min: 0, max: 100, step: 0.50 }
+              - { label: "KV prijs (optioneel)", name: "kv", widget: "string", required: false, hint: "Laat leeg als er geen koppelverkoop is" }
 
       # ── MENU: VLEES ───────────────────────────────────────────────────────
       - name: "menu_vlees"
@@ -81,8 +81,8 @@ collections:
               - { label: "Naam (NL/IT)", name: "name", widget: "string" }
               - { label: "Ingrediënten NL", name: "desc_nl", widget: "text" }
               - { label: "Ingredients EN", name: "desc_en", widget: "text" }
-              - { label: "Prijs (bijv. 16.00)", name: "price", widget: "string" }
-              - { label: "KV prijs (optioneel)", name: "kv", widget: "string", required: false }
+              - { label: "Prijs (€)", name: "price", widget: "number", value_type: "float", min: 0, max: 100, step: 0.50 }
+              - { label: "KV prijs (optioneel)", name: "kv", widget: "string", required: false, hint: "Laat leeg als er geen koppelverkoop is" }
 
       # ── MENU: VIS ─────────────────────────────────────────────────────────
       - name: "menu_vis"
@@ -97,8 +97,8 @@ collections:
               - { label: "Naam (NL/IT)", name: "name", widget: "string" }
               - { label: "Ingrediënten NL", name: "desc_nl", widget: "text" }
               - { label: "Ingredients EN", name: "desc_en", widget: "text" }
-              - { label: "Prijs (bijv. 16.00)", name: "price", widget: "string" }
-              - { label: "KV prijs (optioneel)", name: "kv", widget: "string", required: false }
+              - { label: "Prijs (€)", name: "price", widget: "number", value_type: "float", min: 0, max: 100, step: 0.50 }
+              - { label: "KV prijs (optioneel)", name: "kv", widget: "string", required: false, hint: "Laat leeg als er geen koppelverkoop is" }
 
       # ── MENU: SUPPLEMENTEN ────────────────────────────────────────────────
       - name: "menu_extra"
@@ -112,4 +112,4 @@ collections:
             fields:
               - { label: "Naam NL", name: "name_nl", widget: "string" }
               - { label: "Name EN", name: "name_en", widget: "string" }
-              - { label: "Prijs (bijv. 2.00)", name: "price", widget: "string" }
+              - { label: "Prijs (€)", name: "price", widget: "number", value_type: "float", min: 0, max: 100, step: 0.10 }
