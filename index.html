@@ -767,6 +767,41 @@ nav.dark .hamburger span { background: var(--cream); }
   background: rgba(245,239,224,0.07);
 }
 
+/* Fix phone link colours everywhere on dark backgrounds */
+.contact-card,
+.contact-card:visited,
+.contact-card:hover {
+  color: var(--cream);
+  text-decoration: none;
+}
+
+.contact-val {
+  color: var(--cream) !important;
+}
+
+/* Info strip phone links */
+.info-value a,
+.info-value a:visited {
+  color: var(--cream);
+  text-decoration: none;
+}
+
+.info-value a:hover {
+  color: var(--terracotta-light, #e8a080);
+  text-decoration: underline;
+}
+
+/* Footer phone links */
+footer a[href^="tel:"],
+footer a[href^="tel:"]:visited {
+  color: rgba(245,239,224,0.6);
+  text-decoration: none;
+}
+
+footer a[href^="tel:"]:hover {
+  color: var(--cream);
+}
+
 .contact-card {
   display: flex;
   align-items: center;
@@ -1943,6 +1978,60 @@ body.cart-open {
 .supp-add-btn:hover  { background: var(--terracotta-deep); }
 .supp-add-btn:active { transform: translateX(-50%) scale(0.88); }
 
+
+/* ── PICKUP TIME PICKER ── */
+.pickup-time-row {
+  margin: 0.8rem 0 0.2rem;
+  display: none;
+}
+
+.pickup-time-row.visible {
+  display: block;
+}
+
+.pickup-time-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--smoke);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+#pickup-time-select {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--warm-black);
+  background: #fff;
+  border: 1px solid rgba(28,18,8,0.15);
+  border-radius: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  cursor: pointer;
+}
+
+#pickup-time-select:focus {
+  outline: none;
+  border-color: var(--terracotta);
+}
+
+/* ── ORDER NOTE ── */
+.order-note {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--smoke);
+  text-align: center;
+  margin-top: 0.8rem;
+  line-height: 1.5;
+  padding: 0 0.5rem;
+}
 </style>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -2093,7 +2182,7 @@ body.cart-open {
 <!-- ════ MENU ════ -->
 <section class="menu-section" id="menu">
   <div class="section-inner">
-    <span class="section-label" data-tx="section-label-menu">Wat ik serveer</span>
+    <span class="section-label" data-tx="section-label-menu">Wat we serveren</span>
     <h2 class="section-title" data-tx="section-title-menu">Wat smaakt vandaag?</h2>
 
     <div class="menu-tabs-wrap">
@@ -2787,6 +2876,11 @@ const TRANSLATIONS = {
     'footer-col2-title': 'Informatie',
     'footer-bottom1': '© 2025 L\'inizio Pasta Bar · Leuven · Alle prijzen BTW inclusief',
     'footer-bottom2': 'Vers bereid · Geen levering · Afhalen aan het raam',
+    'pickup-label': 'Gewenste ophaaltijd',
+    'pickup-placeholder': '-- Kies een tijdstip --',
+    'optgroup-lunch': 'Middag / Lunch',
+    'optgroup-dinner': 'Avond / Diner',
+    'order-note': 'Vermeld je gewenste ophaaltijd. Alle bestellingen worden bevestigd door ons.',
     'footer-sug': '⭐ Suggesties',
     'footer-veg': '🌿 Vegetarisch',
     'footer-vlees': '🥩 Vlees',
@@ -2990,7 +3084,7 @@ const TRANSLATIONS = {
     'feat3-desc': 'Gluten-free pasta available on any dish for just a €2.00 supplement.',
 
     /* MENU */
-    'section-label-menu': 'What I serve',
+    'section-label-menu': 'What we serve',
     'section-title-menu': 'The menu',
     'tab-suggestie': '⭐ Suggestions',
     'tab-vegetarisch': '🌿 Vegetarian',
@@ -3045,6 +3139,11 @@ const TRANSLATIONS = {
     'footer-col2-title': 'Information',
     'footer-bottom1': '© 2025 L\'inizio Pasta Bar · Leuven · All prices include VAT',
     'footer-bottom2': 'Made fresh · No delivery · Takeaway at the window',
+    'pickup-label': 'Preferred pickup time',
+    'pickup-placeholder': '-- Choose a time --',
+    'optgroup-lunch': 'Lunch',
+    'optgroup-dinner': 'Dinner',
+    'order-note': 'Please include your preferred pickup time. All orders are subject to confirmation.',
     'footer-sug': '⭐ Suggestions',
     'footer-veg': '🌿 Vegetarian',
     'footer-vlees': '🥩 Meat',
@@ -3345,6 +3444,17 @@ function setLang(lang) {
   tx('[data-tx="footer-col1-title"]','footer-col1-title');
   tx('[data-tx="footer-col2-title"]','footer-col2-title');
   tx('[data-tx="footer-bottom1"]',   'footer-bottom1');
+  /* Pickup time picker */
+  var pickupLabel = document.getElementById('pickup-label');
+  var pickupPlaceholder = document.getElementById('pickup-placeholder');
+  var optgroupLunch = document.getElementById('optgroup-lunch');
+  var optgroupDinner = document.getElementById('optgroup-dinner');
+  var orderNote = document.getElementById('order-note');
+  if (pickupLabel && t['pickup-label']) pickupLabel.textContent = t['pickup-label'];
+  if (pickupPlaceholder && t['pickup-placeholder']) pickupPlaceholder.textContent = t['pickup-placeholder'];
+  if (optgroupLunch && t['optgroup-lunch']) optgroupLunch.label = t['optgroup-lunch'];
+  if (optgroupDinner && t['optgroup-dinner']) optgroupDinner.label = t['optgroup-dinner'];
+  if (orderNote && t['order-note']) orderNote.textContent = t['order-note'];
   /* FOOTER MENU LINKS + HOURS */
   tx('[data-tx="footer-sug"]',         'footer-sug');
   tx('[data-tx="footer-veg"]',         'footer-veg');
@@ -3640,9 +3750,20 @@ function closeChefScreen() {
   document.getElementById('chef-screen').classList.remove('open');
 }
 
+function resetPickupPicker() {
+  var pr = document.getElementById('pickup-time-row');
+  var ps = document.getElementById('pickup-time-select');
+  var wl = document.getElementById('modal-wa-label');
+  var isEN = (typeof currentLang !== 'undefined' && currentLang === 'en');
+  if (pr) pr.classList.remove('visible');
+  if (ps) ps.value = '';
+  if (wl) wl.textContent = 'WhatsApp';
+}
+
 function closeOrderModal(e) {
   if (!e) {
     document.getElementById('order-modal').classList.remove('open');
+    resetPickupPicker();
     return;
   }
   var t = e.target;
@@ -3654,6 +3775,7 @@ function closeOrderModal(e) {
   while (t && t !== document.body) {
     if (t.id === 'modal-close-btn') {
       document.getElementById('order-modal').classList.remove('open');
+      resetPickupPicker();
       return;
     }
     t = t.parentNode;
@@ -3671,14 +3793,45 @@ function sendWhatsApp() {
                .replace(/\s{2,}/g, ' ').trim();
   }
 
+  var pickupRow = document.getElementById('pickup-time-row');
+  var pickupSelect = document.getElementById('pickup-time-select');
+  var pickupTime = pickupSelect ? pickupSelect.value : '';
+
+  // Step 1 — if picker not visible yet, show it and stop
+  if (pickupRow && !pickupRow.classList.contains('visible')) {
+    pickupRow.classList.add('visible');
+    if (pickupSelect) pickupSelect.focus();
+    // Update button label to prompt confirmation
+    var waLabel = document.getElementById('modal-wa-label');
+    if (waLabel) waLabel.textContent = isEN ? 'Confirm & Send' : 'Bevestigen & Sturen';
+    return;
+  }
+
+  // Step 2 — picker is visible, validate selection
+  if (!pickupTime) {
+    if (pickupSelect) {
+      pickupSelect.style.borderColor = 'var(--terracotta)';
+      pickupSelect.focus();
+      setTimeout(function() { pickupSelect.style.borderColor = ''; }, 2000);
+    }
+    return;
+  }
+
   var lines = [];
-  lines.push(isEN ? "Hello L'inizio! I'd like to order:" : "Hallo L'inizio! Ik wil graag bestellen:");
+  lines.push(isEN ? "Hello L'inizio! I'd like to place an order:" : "Hallo L'inizio! Ik wil graag bestellen:");
+  lines.push('');
   cart.forEach(function(i) {
     var cleanName = stripEmoji(i.name);
     lines.push(i.qty + '× ' + cleanName + ' (' + fmt(i.price * i.qty) + ')');
   });
   lines.push('');
   lines.push((isEN ? 'Total' : 'Totaal') + ': ' + fmt(total));
+  lines.push('');
+  lines.push((isEN ? 'Preferred pickup time: ' : 'Gewenste ophaaltijd: ') + pickupTime);
+  lines.push('');
+  lines.push(isEN
+    ? 'I understand that the pickup time is subject to confirmation based on availability.'
+    : 'Ik begrijp dat de ophaaltijd afhankelijk is van beschikbaarheid en door jullie bevestigd wordt.');
   var encoded = encodeURIComponent(lines.join('\n'));
   window.open('https://wa.me/32485736362?text=' + encoded, '_blank');
 }
@@ -3754,6 +3907,36 @@ setLang = function(lang) {
       <div class="receipt-total-row">
         <span class="receipt-total-label" id="receipt-total-label">Totaal</span>
         <span class="receipt-total-amount" id="receipt-total-amount">€0,00</span>
+      </div>
+
+      <!-- Pickup time picker -->
+      <div class="pickup-time-row" id="pickup-time-row">
+        <span class="pickup-time-label" id="pickup-label">Gewenste ophaaltijd</span>
+        <select id="pickup-time-select">
+          <option value="" id="pickup-placeholder">-- Kies een tijdstip --</option>
+          <optgroup label="Middag / Lunch" id="optgroup-lunch">
+            <option value="12:00">12:00</option>
+            <option value="12:15">12:15</option>
+            <option value="12:30">12:30</option>
+            <option value="12:45">12:45</option>
+            <option value="13:00">13:00</option>
+            <option value="13:15">13:15</option>
+          </optgroup>
+          <optgroup label="Avond / Dinner" id="optgroup-dinner">
+            <option value="18:00">18:00</option>
+            <option value="18:15">18:15</option>
+            <option value="18:30">18:30</option>
+            <option value="18:45">18:45</option>
+            <option value="19:00">19:00</option>
+            <option value="19:15">19:15</option>
+            <option value="19:30">19:30</option>
+            <option value="19:45">19:45</option>
+            <option value="20:00">20:00</option>
+            <option value="20:15">20:15</option>
+            <option value="20:30">20:30</option>
+            <option value="20:45">20:45</option>
+          </optgroup>
+        </select>
       </div>
 
       <div class="receipt-actions">
