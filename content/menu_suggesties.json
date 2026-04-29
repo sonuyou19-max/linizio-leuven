@@ -5,14 +5,14 @@
       "desc_nl": "Voeg burrata toe aan elk recept (behalve visgerechten) voor extra romigheid",
       "desc_en": "Add burrata to any recipe (except fish dishes) for extra creaminess",
       "price": 6,
-      "kv": "0"
+      "kv": ""
     },
     {
       "name": "🥦 Broccoli (Linguine)",
       "desc_nl": "Linguine met olijfolie, broccoli, broccolicrème, knoflook, geraspte Parmezaanse kaas en peper",
       "desc_en": "Linguine with olive oil, broccoli, broccoli cream, garlic, grated Parmesan and pepper",
       "price": 16,
-      "kv": ""
+      "kv": "2"
     },
     {
       "name": "🎃 Gnocchi met Pompoen",
