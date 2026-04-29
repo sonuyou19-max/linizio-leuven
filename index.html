@@ -668,7 +668,9 @@ nav.dark .hamburger span { background: var(--cream); }
 
 .menu-item-kv {
   display: block;
-  font-size: 0.62rem;
+  font-size: 0.82rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 600;
   color: var(--gold);
   letter-spacing: 0.04em;
 }
@@ -4076,7 +4078,13 @@ if (window.netlifyIdentity) {
         '<div class="menu-item-price">' + (isAddon && hasPrice ? '+ ' : '') + fmt + kv + '</div>' +
         '<button class="add-to-cart" aria-label="Toevoegen">+</button>';
 
-      var pv = price, nm = item.name||'';
+      // If no individual price, extract numeric value from KV field as cart price
+      var cartPrice = price;
+      if (cartPrice === 0 && kvRaw) {
+        var kvNum = parseFloat(kvRaw.replace(/[^0-9.,]/g, '').replace(',', '.'));
+        if (kvNum > 0) cartPrice = kvNum;
+      }
+      var pv = cartPrice, nm = item.name||'';
       div.querySelector('.add-to-cart').addEventListener('click', function() {
         if (typeof addToCart === 'function') addToCart(this, nm, pv);
       });
