@@ -3504,6 +3504,14 @@ function setLang(lang) {
 
   /* ── MENU NOTES ── */
   tx('[data-tx="menu-note-sug"]', 'menu-note-sug');
+
+  /* ── GENERIC LOOP — catches all CMS-generated menu descriptions ── */
+  document.querySelectorAll('[data-tx]').forEach(function(el) {
+    var key = el.getAttribute('data-tx');
+    if (t[key] !== undefined) {
+      el.innerHTML = t[key];
+    }
+  });
 }
 
 
@@ -4090,6 +4098,14 @@ if (window.netlifyIdentity) {
       });
       container.appendChild(div);
     });
+
+    // If EN is already active when content loads, apply EN descriptions immediately
+    if (typeof currentLang !== 'undefined' && currentLang === 'en' && typeof TRANSLATIONS !== 'undefined') {
+      container.querySelectorAll('[data-tx]').forEach(function(el) {
+        var key = el.getAttribute('data-tx');
+        if (TRANSLATIONS.en[key] !== undefined) el.innerHTML = TRANSLATIONS.en[key];
+      });
+    }
   }
 
   function buildSupps(items) {
