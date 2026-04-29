@@ -4045,10 +4045,18 @@ if (window.netlifyIdentity) {
     if (!container) return;
     container.innerHTML = '';
     items.forEach(function(item) {
-      var price = parseFloat(item.price || 0);
-      var hasIndividualPrice = price > 0;
-      var fmt = hasIndividualPrice ? ('€' + price.toFixed(2).replace('.', ',')) : '';
-      var kv = item.kv ? '<span class="menu-item-kv">' + item.kv + '</span>' : '';
+      // Parse price — handle integer, float, string robustly
+      var price = parseFloat(String(item.price || '0').replace(',', '.')) || 0;
+      var hasPrice = price > 0;
+
+      // Format price with € sign and comma decimal
+      var fmt = hasPrice ? ('€' + price.toFixed(2).replace('.', ',')) : '';
+
+      // KV field — add "KV " prefix if not already present
+      var kvRaw = String(item.kv || '').trim();
+      if (kvRaw && kvRaw.indexOf('KV') === -1) kvRaw = 'KV €' + kvRaw;
+      var kv = kvRaw ? '<span class="menu-item-kv">' + kvRaw + '</span>' : '';
+
       var isAddon = (item.name||'').indexOf('Extra Burrata') !== -1;
       var descKey = 'cms-' + tabId + '-' + Math.random().toString(36).slice(2);
 
@@ -4065,7 +4073,7 @@ if (window.netlifyIdentity) {
           '<div class="menu-item-name">' + (item.name||'') + badge + '</div>' +
           '<div class="menu-item-desc" data-tx="' + descKey + '">' + (item.desc_nl||'') + '</div>' +
         '</div>' +
-        '<div class="menu-item-price">' + (isAddon && hasIndividualPrice?'+ ':'') + fmt + kv + '</div>' +
+        '<div class="menu-item-price">' + (isAddon && hasPrice ? '+ ' : '') + fmt + kv + '</div>' +
         '<button class="add-to-cart" aria-label="Toevoegen">+</button>';
 
       var pv = price, nm = item.name||'';
