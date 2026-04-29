@@ -1981,11 +1981,7 @@ body.cart-open {
 
 /* ── PICKUP TIME PICKER ── */
 .pickup-time-row {
-  margin: 0.8rem 0 0.2rem;
-  display: none;
-}
-
-.pickup-time-row.visible {
+  margin: 0.8rem 0 0.4rem;
   display: block;
 }
 
@@ -3751,13 +3747,8 @@ function closeChefScreen() {
 }
 
 function resetPickupPicker() {
-  var pr = document.getElementById('pickup-time-row');
   var ps = document.getElementById('pickup-time-select');
-  var wl = document.getElementById('modal-wa-label');
-  var isEN = (typeof currentLang !== 'undefined' && currentLang === 'en');
-  if (pr) pr.classList.remove('visible');
   if (ps) ps.value = '';
-  if (wl) wl.textContent = 'WhatsApp';
 }
 
 function closeOrderModal(e) {
@@ -3793,26 +3784,19 @@ function sendWhatsApp() {
                .replace(/\s{2,}/g, ' ').trim();
   }
 
-  var pickupRow = document.getElementById('pickup-time-row');
   var pickupSelect = document.getElementById('pickup-time-select');
   var pickupTime = pickupSelect ? pickupSelect.value : '';
 
-  // Step 1 — if picker not visible yet, show it and stop
-  if (pickupRow && !pickupRow.classList.contains('visible')) {
-    pickupRow.classList.add('visible');
-    if (pickupSelect) pickupSelect.focus();
-    // Update button label to prompt confirmation
-    var waLabel = document.getElementById('modal-wa-label');
-    if (waLabel) waLabel.textContent = isEN ? 'Confirm & Send' : 'Bevestigen & Sturen';
-    return;
-  }
-
-  // Step 2 — picker is visible, validate selection
+  // Validate time selection
   if (!pickupTime) {
     if (pickupSelect) {
-      pickupSelect.style.borderColor = 'var(--terracotta)';
+      pickupSelect.style.borderColor = '#C4622D';
+      pickupSelect.style.boxShadow = '0 0 0 2px rgba(196,98,45,0.25)';
       pickupSelect.focus();
-      setTimeout(function() { pickupSelect.style.borderColor = ''; }, 2000);
+      setTimeout(function() {
+        pickupSelect.style.borderColor = '';
+        pickupSelect.style.boxShadow = '';
+      }, 2500);
     }
     return;
   }
@@ -3827,6 +3811,16 @@ function sendWhatsApp() {
   lines.push('');
   lines.push((isEN ? 'Total' : 'Totaal') + ': ' + fmt(total));
   lines.push('');
+  // Get today's date formatted nicely
+  var now = new Date();
+  var days_nl = ['Zondag','Maandag','Dinsdag','Woensdag','Donderdag','Vrijdag','Zaterdag'];
+  var days_en = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var months_nl = ['jan','feb','mrt','apr','mei','jun','jul','aug','sep','okt','nov','dec'];
+  var months_en = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var dayName = isEN ? days_en[now.getDay()] : days_nl[now.getDay()];
+  var monthName = isEN ? months_en[now.getMonth()] : months_nl[now.getMonth()];
+  var dateStr = dayName + ' ' + now.getDate() + ' ' + monthName + ' ' + now.getFullYear();
+  lines.push((isEN ? 'Date: ' : 'Datum: ') + dateStr);
   lines.push((isEN ? 'Preferred pickup time: ' : 'Gewenste ophaaltijd: ') + pickupTime);
   lines.push('');
   lines.push(isEN
@@ -4052,7 +4046,8 @@ if (window.netlifyIdentity) {
     container.innerHTML = '';
     items.forEach(function(item) {
       var price = parseFloat(item.price || 0);
-      var fmt = '€' + price.toFixed(2).replace('.', ',');
+      var hasIndividualPrice = price > 0;
+      var fmt = hasIndividualPrice ? ('€' + price.toFixed(2).replace('.', ',')) : '';
       var kv = item.kv ? '<span class="menu-item-kv">' + item.kv + '</span>' : '';
       var isAddon = (item.name||'').indexOf('Extra Burrata') !== -1;
       var descKey = 'cms-' + tabId + '-' + Math.random().toString(36).slice(2);
@@ -4070,7 +4065,7 @@ if (window.netlifyIdentity) {
           '<div class="menu-item-name">' + (item.name||'') + badge + '</div>' +
           '<div class="menu-item-desc" data-tx="' + descKey + '">' + (item.desc_nl||'') + '</div>' +
         '</div>' +
-        '<div class="menu-item-price">' + (isAddon?'+ ':'') + fmt + kv + '</div>' +
+        '<div class="menu-item-price">' + (isAddon && hasIndividualPrice?'+ ':'') + fmt + kv + '</div>' +
         '<button class="add-to-cart" aria-label="Toevoegen">+</button>';
 
       var pv = price, nm = item.name||'';
