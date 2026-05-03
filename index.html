@@ -2030,6 +2030,60 @@ body.cart-open {
   line-height: 1.5;
   padding: 0 0.5rem;
 }
+
+/* ── KV BUTTON ── */
+.menu-item-buttons {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.btn-single {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-single:active { transform: scale(0.9); background: var(--terracotta-deep); }
+
+.btn-kv {
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 11px;
+  background: var(--gold, #b8923a);
+  color: #fff;
+  border: none;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-kv:active { transform: scale(0.9); background: #9a7a2e; }
 </style>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -4067,6 +4121,14 @@ if (window.netlifyIdentity) {
       if (kvRaw && kvRaw.indexOf('KV') === -1) kvRaw = 'KV €' + kvRaw;
       var kv = kvRaw ? '<span class="menu-item-kv">' + kvRaw + '</span>' : '';
 
+      // Extract KV numeric price
+      var kvPrice = 0;
+      if (kvRaw) {
+        var kvNum = parseFloat(kvRaw.replace(/[^0-9.,]/g, '').replace(',', '.'));
+        if (kvNum > 0) kvPrice = kvNum;
+      }
+      var hasKV = kvPrice > 0;
+
       var isAddon = (item.name||'').indexOf('Extra Burrata') !== -1;
       var descKey = 'cms-' + tabId + '-' + Math.random().toString(36).slice(2);
 
@@ -4078,24 +4140,61 @@ if (window.netlifyIdentity) {
       var div = document.createElement('div');
       div.className = isAddon ? 'menu-item menu-item-addon' : 'menu-item';
       var badge = isAddon ? ' <span class="addon-badge" data-tx="addon-badge">+ Toevoeging</span>' : '';
+
+      // Build buttons — show KV button if dish has KV price
+      var btnHtml = '';
+      if (hasKV) {
+        btnHtml = '<div class="menu-item-buttons">' +
+          (hasPrice ? '<button class="btn-single" aria-label="Toevoegen">+</button>' : '') +
+          '<button class="btn-kv" aria-label="KV bestellen">+ KV</button>' +
+        '</div>';
+      } else {
+        btnHtml = '<button class="add-to-cart" aria-label="Toevoegen">+</button>';
+      }
+
       div.innerHTML =
         '<div class="menu-item-info">' +
           '<div class="menu-item-name">' + (item.name||'') + badge + '</div>' +
           '<div class="menu-item-desc" data-tx="' + descKey + '">' + (item.desc_nl||'') + '</div>' +
         '</div>' +
         '<div class="menu-item-price">' + (isAddon && hasPrice ? '+ ' : '') + fmt + kv + '</div>' +
-        '<button class="add-to-cart" aria-label="Toevoegen">+</button>';
+        btnHtml;
 
-      // If no individual price, extract numeric value from KV field as cart price
-      var cartPrice = price;
-      if (cartPrice === 0 && kvRaw) {
-        var kvNum = parseFloat(kvRaw.replace(/[^0-9.,]/g, '').replace(',', '.'));
-        if (kvNum > 0) cartPrice = kvNum;
+      var nm = item.name || '';
+
+      // Wire single + button
+      if (hasKV && hasPrice) {
+        var singleBtn = div.querySelector('.btn-single');
+        if (singleBtn) {
+          (function(n, p) {
+            singleBtn.addEventListener('click', function() {
+              if (typeof addToCart === 'function') addToCart(this, n, p);
+            });
+          })(nm, price);
+        }
+      } else if (!hasKV) {
+        var regularBtn = div.querySelector('.add-to-cart');
+        if (regularBtn) {
+          var cartPrice = hasPrice ? price : kvPrice;
+          (function(n, p) {
+            regularBtn.addEventListener('click', function() {
+              if (typeof addToCart === 'function') addToCart(this, n, p);
+            });
+          })(nm, cartPrice);
+        }
       }
-      var pv = cartPrice, nm = item.name||'';
-      div.querySelector('.add-to-cart').addEventListener('click', function() {
-        if (typeof addToCart === 'function') addToCart(this, nm, pv);
-      });
+
+      // Wire KV button — 1 KV unit = full KV price
+      if (hasKV) {
+        var kvBtn = div.querySelector('.btn-kv');
+        if (kvBtn) {
+          (function(n, p) {
+            kvBtn.addEventListener('click', function() {
+              if (typeof addToCart === 'function') addToCart(this, n + ' KV', p);
+            });
+          })(nm, kvPrice);
+        }
+      }
       container.appendChild(div);
     });
 
