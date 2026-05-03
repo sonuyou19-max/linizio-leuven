@@ -2084,6 +2084,42 @@ body.cart-open {
 }
 
 .btn-kv:active { transform: scale(0.9); background: #9a7a2e; }
+
+/* ── FLY TO CART ANIMATION ── */
+.fly-item {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  font-size: 1.1rem;
+  background: var(--terracotta);
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  opacity: 1;
+  transition: none;
+}
+
+.fly-item.fly-kv {
+  background: var(--gold, #b8923a);
+  width: auto;
+  padding: 0 8px;
+  border-radius: 11px;
+  height: 22px;
+  font-size: 0.58rem;
+}
+
+@keyframes flyToCart {
+  0%   { transform: scale(1);    opacity: 1; }
+  60%  { transform: scale(0.7);  opacity: 0.9; }
+  100% { transform: scale(0.2);  opacity: 0; }
+}
 </style>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -2282,17 +2318,17 @@ body.cart-open {
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🍅 Gradisca ai Pomodori Secchi</div><div class="menu-item-desc" data-tx="v007">Tomatensaus, verse room, gedroogde tomaten, PARMIGIANO REGGIANO D.O.P, peterselie, parmezaanschilfers, zwarte peper</div></div><div class="menu-item-price">€16,00</div><button class="add-to-cart" onclick="addToCart(this,'🍅 Gradisca ai Pomodori Secchi',16.00)" aria-label="Toevoegen">+</button></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🧀 Buffels Mozzarella (lauwe saus)</div><div class="menu-item-desc" data-tx="v008">Kerstomatensaus, ajuin, pesto, gedroogde tomaten, mozzarella van buffelmelk, PARMIGIANO REGGIANO D.O.P, parmezaanschilfers, zwarte peper</div></div><div class="menu-item-price">€16,00</div><button class="add-to-cart" onclick="addToCart(this,'🧀 Buffels Mozzarella (lauwe saus)',16.00)" aria-label="Toevoegen">+</button></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🔴 Rode Biet</div><div class="menu-item-desc" data-tx="v009">Olijfolie, rode bieten, ajuin, room, ricotta kaas, PARMIGIANO REGGIANO D.O.P, platte peterselie, zwarte peper</div></div><div class="menu-item-price">€16,00</div><button class="add-to-cart" onclick="addToCart(this,'🔴 Rode Biet',16.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥗 Vegetariana (ook zonder tomatensaus)</div><div class="menu-item-desc" data-tx="v010">Tomatensaus, look, ajuin, verse tomaten, broccoli, courgettes, kappers, basilicum, PARMIGIANO REGGIANO D.O.P, zwarte peper</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥗 Vegetariana (ook zonder tomatensaus)',17.00)" aria-label="Toevoegen">+</button></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥗 Vegetariana (ook zonder tomatensaus)</div><div class="menu-item-desc" data-tx="v010">Tomatensaus, look, ajuin, verse tomaten, broccoli, courgettes, kappers, basilicum, PARMIGIANO REGGIANO D.O.P, zwarte peper</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥗 Vegetariana (ook zonder tomatensaus)',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥗 Vegetariana (ook zonder tomatensaus)',23)" aria-label="KV bestellen">+ KV</button></div></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🍆 Aubergine alla Norma con Ricotta</div><div class="menu-item-desc" data-tx="v011">Kerstomatensaus, look, ajuin, aubergine, mozzarella, PARMIGIANO REGGIANO D.O.P, ricotta, basilicum, zwarte peper</div></div><div class="menu-item-price">€17,00</div><button class="add-to-cart" onclick="addToCart(this,'🍆 Aubergine alla Norma con Ricotta',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🍅 Napoli al Pomodoro Fresco, Zucchine e Pesto</div><div class="menu-item-desc" data-tx="v012">Tomatensaus, verse tomaten, courgettes, ajuin, PARMIGIANO REGGIANO D.O.P, pesto, zwarte peper</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🍅 Napoli al Pomodoro Fresco, Zucchine e Pesto',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🎃 Alla Zucca met room (Fusilli of Gnocchi)</div><div class="menu-item-desc" data-tx="v013">Pompoen, pilipili, look, PARMIGIANO REGGIANO D.O.P, verse room, peterselie, parmezaanschilfers</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🎃 Alla Zucca met room (Fusilli of Gnocchi)',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥦🧀 Broccoli 4 Kaas</div><div class="menu-item-desc" data-tx="v014">Broccoli, look, mascarpone, taleggio, gorgonzola, verse room, PARMIGIANO REGGIANO D.O.P, parmezaanschilfers, zwarte peper</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥦🧀 Broccoli 4 Kaas',17.00)" aria-label="Toevoegen">+</button></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🍅 Napoli al Pomodoro Fresco, Zucchine e Pesto</div><div class="menu-item-desc" data-tx="v012">Tomatensaus, verse tomaten, courgettes, ajuin, PARMIGIANO REGGIANO D.O.P, pesto, zwarte peper</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🍅 Napoli al Pomodoro Fresco, Zucchine e Pesto',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🍅 Napoli al Pomodoro Fresco, Zucchine e Pesto',23)" aria-label="KV bestellen">+ KV</button></div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🎃 Alla Zucca met room (Fusilli of Gnocchi)</div><div class="menu-item-desc" data-tx="v013">Pompoen, pilipili, look, PARMIGIANO REGGIANO D.O.P, verse room, peterselie, parmezaanschilfers</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🎃 Alla Zucca met room (Fusilli of Gnocchi)',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🎃 Alla Zucca met room (Fusilli of Gnocchi)',23)" aria-label="KV bestellen">+ KV</button></div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥦🧀 Broccoli 4 Kaas</div><div class="menu-item-desc" data-tx="v014">Broccoli, look, mascarpone, taleggio, gorgonzola, verse room, PARMIGIANO REGGIANO D.O.P, parmezaanschilfers, zwarte peper</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥦🧀 Broccoli 4 Kaas',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥦🧀 Broccoli 4 Kaas',23)" aria-label="KV bestellen">+ KV</button></div></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🌿 Alla Sasi (Fusilli of Linguine)</div><div class="menu-item-desc" data-tx="v015">Olijfolie, peperoncino, look, peterselie, courgettes, geroosterde pijnappelpitten, pesto, PARMIGIANO REGGIANO D.O.P, parmezaanschilfers</div></div><div class="menu-item-price">€17,00</div><button class="add-to-cart" onclick="addToCart(this,'🌿 Alla Sasi (Fusilli of Linguine)',17.00)" aria-label="Toevoegen">+</button></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🎃 Pompoen zonder room (Linguine)</div><div class="menu-item-desc" data-tx="v016">Pompoen, pilipili, look, PARMIGIANO REGGIANO D.O.P, parmezaanschilfers, platte peterselie</div></div><div class="menu-item-price">€17,00</div><button class="add-to-cart" onclick="addToCart(this,'🎃 Pompoen zonder room (Linguine)',17.00)" aria-label="Toevoegen">+</button></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🍅🥦 Vegetariana met Linguine</div><div class="menu-item-desc" data-tx="v017">Look, verse tomaten, verse broccoli, verse courgettes, platte peterselie, PARMIGIANO REGGIANO D.O.P, zwarte peper</div></div><div class="menu-item-price">€17,00</div><button class="add-to-cart" onclick="addToCart(this,'🍅🥦 Vegetariana met Linguine',17.00)" aria-label="Toevoegen">+</button></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🫒 Olijven en Kappers (Linguine)</div><div class="menu-item-desc" data-tx="v018">Olijven, kappers, look, kerstomaatjes, platte peterselie, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00</div><button class="add-to-cart" onclick="addToCart(this,'🫒 Olijven en Kappers (Linguine)',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🌿 Pesto (Linguine of Penne)</div><div class="menu-item-desc" data-tx="v019">Verse basilicum, look, pijnappelpitten, muskaatnoot, PARMIGIANO REGGIANO D.O.P, zwarte peper</div></div><div class="menu-item-price">€18,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🌿 Pesto (Linguine of Penne)',18.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥦🌿 Broccoli Pesto e Ricotta</div><div class="menu-item-desc" data-tx="v020">Broccoli, pesto, ricotta, look, verse room, PARMIGIANO REGGIANO D.O.P, parmezaanschilfers, zwarte peper</div></div><div class="menu-item-price">€18,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥦🌿 Broccoli Pesto e Ricotta',18.00)" aria-label="Toevoegen">+</button></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🌿 Pesto (Linguine of Penne)</div><div class="menu-item-desc" data-tx="v019">Verse basilicum, look, pijnappelpitten, muskaatnoot, PARMIGIANO REGGIANO D.O.P, zwarte peper</div></div><div class="menu-item-price">€18,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🌿 Pesto (Linguine of Penne)',18.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🌿 Pesto (Linguine of Penne)',23)" aria-label="KV bestellen">+ KV</button></div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥦🌿 Broccoli Pesto e Ricotta</div><div class="menu-item-desc" data-tx="v020">Broccoli, pesto, ricotta, look, verse room, PARMIGIANO REGGIANO D.O.P, parmezaanschilfers, zwarte peper</div></div><div class="menu-item-price">€18,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥦🌿 Broccoli Pesto e Ricotta',18.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥦🌿 Broccoli Pesto e Ricotta',23)" aria-label="KV bestellen">+ KV</button></div></div>
       </div>
       <div class="menu-note" data-tx="menu-note-veg">KV = Koppelverkoop, verkocht per 2 bekers. Altijd doorgeven bij bestelling.</div>
     </div>
@@ -2301,26 +2337,26 @@ body.cart-open {
     <div class="menu-panel" id="tab-vlees">
       <div class="menu-items">
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Panna e Prosciutto</div><div class="menu-item-desc" data-tx="m001">Gekookte hesp, verse room, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€16,00</div><button class="add-to-cart" onclick="addToCart(this,'🥩 Panna e Prosciutto',16.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Amatriciana</div><div class="menu-item-desc" data-tx="m002">Tomatensaus, ajuin, spek, verse tomaten, basilicum, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€16,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥩 Amatriciana',16.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Bolognese</div><div class="menu-item-desc" data-tx="m003">Tomatensaus, gehakt rundsvlees, gehakt varkensvlees, selder, wortels, ajuin, muskaatnoot, peper, boter, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€16,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥩 Bolognese',16.00)" aria-label="Toevoegen">+</button></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Amatriciana</div><div class="menu-item-desc" data-tx="m002">Tomatensaus, ajuin, spek, verse tomaten, basilicum, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€16,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥩 Amatriciana',16.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥩 Amatriciana',23)" aria-label="KV bestellen">+ KV</button></div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Bolognese</div><div class="menu-item-desc" data-tx="m003">Tomatensaus, gehakt rundsvlees, gehakt varkensvlees, selder, wortels, ajuin, muskaatnoot, peper, boter, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€16,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥩 Bolognese',16.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥩 Bolognese',23)" aria-label="KV bestellen">+ KV</button></div></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Arrabbiata con Salame</div><div class="menu-item-desc" data-tx="m004">Kerstomatensaus, look, pikante salami, pilipili, basilicum, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00</div><button class="add-to-cart" onclick="addToCart(this,'🥩 Arrabbiata con Salame',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Carbonara con Pomodoro</div><div class="menu-item-desc" data-tx="m005">Tomatensaus, spek, ajuin, gepasteuriseerd eieren, PARMIGIANO REGGIANO D.O.P, verse room, peterselie, zwarte peper</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥩 Carbonara con Pomodoro',17.00)" aria-label="Toevoegen">+</button></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Carbonara con Pomodoro</div><div class="menu-item-desc" data-tx="m005">Tomatensaus, spek, ajuin, gepasteuriseerd eieren, PARMIGIANO REGGIANO D.O.P, verse room, peterselie, zwarte peper</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥩 Carbonara con Pomodoro',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥩 Carbonara con Pomodoro',23)" aria-label="KV bestellen">+ KV</button></div></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Panna, Prosciutto e Funghi</div><div class="menu-item-desc" data-tx="m006">Gekookte hesp, verse room, champignons, peterselie, PARMIGIANO REGGIANO D.O.P, zwarte peper</div></div><div class="menu-item-price">€17,00</div><button class="add-to-cart" onclick="addToCart(this,'🥩 Panna, Prosciutto e Funghi',17.00)" aria-label="Toevoegen">+</button></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Carbonara all'Italiana</div><div class="menu-item-desc" data-tx="m007">Spek, ajuin, gepasteuriseerd eieren, PARMIGIANO REGGIANO D.O.P, verse room, peterselie, zwarte peper</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥩 Carbonara all\'Italiana',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Diavola</div><div class="menu-item-desc" data-tx="m008">Tomatensaus, verse room, champignons, spek, pilipili, peterselie, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥩 Diavola',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Chef</div><div class="menu-item-desc" data-tx="m009">Tomatensaus, look, ajuin, spek, broccoli, verse tomaten, basilicum, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥩 Chef',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Paesana</div><div class="menu-item-desc" data-tx="m010">Verse room, kerstomatensaus, gekookte hesp, champignons, look, peterselie, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥩 Paesana',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Inizio</div><div class="menu-item-desc" data-tx="m011">Bolognese, verse room, zwarte peper, muskaatnoot, ajuin in witte wijn, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥩 Inizio',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Alle Zucchine e Ricotta</div><div class="menu-item-desc" data-tx="m012">Tomatensaus, courgettes, ajuin, spek, witte wijn, ricottakaas, verse room, peterselie, zwarte peper, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥩 Alle Zucchine e Ricotta',17.00)" aria-label="Toevoegen">+</button></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Diavola</div><div class="menu-item-desc" data-tx="m008">Tomatensaus, verse room, champignons, spek, pilipili, peterselie, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥩 Diavola',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥩 Diavola',23)" aria-label="KV bestellen">+ KV</button></div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Chef</div><div class="menu-item-desc" data-tx="m009">Tomatensaus, look, ajuin, spek, broccoli, verse tomaten, basilicum, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥩 Chef',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥩 Chef',23)" aria-label="KV bestellen">+ KV</button></div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Paesana</div><div class="menu-item-desc" data-tx="m010">Verse room, kerstomatensaus, gekookte hesp, champignons, look, peterselie, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥩 Paesana',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥩 Paesana',23)" aria-label="KV bestellen">+ KV</button></div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Inizio</div><div class="menu-item-desc" data-tx="m011">Bolognese, verse room, zwarte peper, muskaatnoot, ajuin in witte wijn, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥩 Inizio',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥩 Inizio',23)" aria-label="KV bestellen">+ KV</button></div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Alle Zucchine e Ricotta</div><div class="menu-item-desc" data-tx="m012">Tomatensaus, courgettes, ajuin, spek, witte wijn, ricottakaas, verse room, peterselie, zwarte peper, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥩 Alle Zucchine e Ricotta',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥩 Alle Zucchine e Ricotta',23)" aria-label="KV bestellen">+ KV</button></div></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Broccoli al Gorgonzola</div><div class="menu-item-desc" data-tx="m013">Verse room, spek, look, broccoli, gorgonzola, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00</div><button class="add-to-cart" onclick="addToCart(this,'🥩 Broccoli al Gorgonzola',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Broccoli Bolognese</div><div class="menu-item-desc" data-tx="m014">Tomatensaus, verse room, broccoli, bolognese, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥩 Broccoli Bolognese',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Pompoen met Spek Alto Adige met room</div><div class="menu-item-desc" data-tx="m015">Pompoen, spek dell'Alto Adige, pilipili, look, verse room, peterselie, PARMIGIANO REGGIANO D.O.P, parmezaanschilfers</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥩 Pompoen met Spek Alto Adige met room',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Casa – Stoofvlees Ragù op Napolitaanse wijze (ook met Gnocchi)</div><div class="menu-item-desc" data-tx="m016">Tomatensaus, stoofvlees met ragù saus op Napolitaanse wijze, ajuin, ricotta, basilicum, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🥩 Casa – Stoofvlees Ragù op Napolitaanse wijze (ook met Gnocchi)',17.00)" aria-label="Toevoegen">+</button></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Broccoli Bolognese</div><div class="menu-item-desc" data-tx="m014">Tomatensaus, verse room, broccoli, bolognese, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥩 Broccoli Bolognese',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥩 Broccoli Bolognese',23)" aria-label="KV bestellen">+ KV</button></div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Pompoen met Spek Alto Adige met room</div><div class="menu-item-desc" data-tx="m015">Pompoen, spek dell'Alto Adige, pilipili, look, verse room, peterselie, PARMIGIANO REGGIANO D.O.P, parmezaanschilfers</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥩 Pompoen met Spek Alto Adige met room',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥩 Pompoen met Spek Alto Adige met room',23)" aria-label="KV bestellen">+ KV</button></div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Casa – Stoofvlees Ragù op Napolitaanse wijze (ook met Gnocchi)</div><div class="menu-item-desc" data-tx="m016">Tomatensaus, stoofvlees met ragù saus op Napolitaanse wijze, ajuin, ricotta, basilicum, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥩 Casa – Stoofvlees Ragù op Napolitaanse wijze (ook met Gnocchi)',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥩 Casa – Stoofvlees Ragù op Napolitaanse wijze (ook met Gnocchi)',23)" aria-label="KV bestellen">+ KV</button></div></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Panna, Prosciutto, Broccoli & Gorgonzola</div><div class="menu-item-desc" data-tx="m017">Gekookte hesp, verse room, broccoli, look, gorgonzola, zwarte peper, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00</div><button class="add-to-cart" onclick="addToCart(this,'🥩 Panna, Prosciutto, Broccoli & Gorgonzola',17.00)" aria-label="Toevoegen">+</button></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Alla Vodka</div><div class="menu-item-desc" data-tx="m018">Olijfolie, ajuin, vlees pancetta, tomatensaus, room, platte peterselie, zwarte peper, PARMIGIANO REGGIANO D.O.P, Vodka</div></div><div class="menu-item-price">€17,00</div><button class="add-to-cart" onclick="addToCart(this,'🥩 Alla Vodka',17.00)" aria-label="Toevoegen">+</button></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Pompoen met Spek (Linguine, zonder room)</div><div class="menu-item-desc" data-tx="m019">Pompoen, spek dell'Alto Adige, pilipili, look, PARMIGIANO REGGIANO D.O.P, peterselie, parmezaanschilfers</div></div><div class="menu-item-price">€17,00</div><button class="add-to-cart" onclick="addToCart(this,'🥩 Pompoen met Spek (Linguine, zonder room)',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 American Bar</div><div class="menu-item-desc" data-tx="m020">Tomatensaus, spek, ajuin, gepasteuriseerd eieren, verse room, peterselie, zwarte peper, pesto, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€18,00<span class="menu-item-kv">KV €24</span></div><button class="add-to-cart" onclick="addToCart(this,'🥩 American Bar',18.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Italian Bar</div><div class="menu-item-desc" data-tx="m021">Spek, ajuin, gepasteuriseerd eieren, verse room, peterselie, zwarte peper, pesto, parmezaanschilfers, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€18,00<span class="menu-item-kv">KV €24</span></div><button class="add-to-cart" onclick="addToCart(this,'🥩 Italian Bar',18.00)" aria-label="Toevoegen">+</button></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 American Bar</div><div class="menu-item-desc" data-tx="m020">Tomatensaus, spek, ajuin, gepasteuriseerd eieren, verse room, peterselie, zwarte peper, pesto, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€18,00<span class="menu-item-kv">KV €24</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥩 American Bar',18.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥩 American Bar',24)" aria-label="KV bestellen">+ KV</button></div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Italian Bar</div><div class="menu-item-desc" data-tx="m021">Spek, ajuin, gepasteuriseerd eieren, verse room, peterselie, zwarte peper, pesto, parmezaanschilfers, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€18,00<span class="menu-item-kv">KV €24</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🥩 Italian Bar',18.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🥩 Italian Bar',24)" aria-label="KV bestellen">+ KV</button></div></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Pasta e Patate alla Napoletana (Pasta Mista)</div><div class="menu-item-desc" data-tx="m022">Olijfolie, look, ajuin, wortels, selder, tomaat, aardappelen, spek, Parmezaan, scamorza, rozemarijn, peper, peterselie</div></div><div class="menu-item-price">€18,00</div><button class="add-to-cart" onclick="addToCart(this,'🥩 Pasta e Patate alla Napoletana (Pasta Mista)',18.00)" aria-label="Toevoegen">+</button></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Origineel Carbonara</div><div class="menu-item-desc" data-tx="m023">Guanciale, gepasteuriseerd eieren, Pecorino</div></div><div class="menu-item-price">€18,00</div><button class="add-to-cart" onclick="addToCart(this,'🥩 Origineel Carbonara',18.00)" aria-label="Toevoegen">+</button></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🥩 Origineel Amatriciana</div><div class="menu-item-desc" data-tx="m024">Guanciale, kerstomaatjes, tomatensaus, een snuifje peper, Pecorino kaas</div></div><div class="menu-item-price">€18,00</div><button class="add-to-cart" onclick="addToCart(this,'🥩 Origineel Amatriciana',18.00)" aria-label="Toevoegen">+</button></div>
@@ -2332,13 +2368,13 @@ body.cart-open {
     <div class="menu-panel" id="tab-vis">
       <div class="menu-items">
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🍤 Paesana agli Scampi</div><div class="menu-item-desc" data-tx="f001">Verse room, kerstomatensaus, gekookte hesp, paddestoelen, look, ajuin, peterselie, PARMIGIANO REGGIANO D.O.P, witte wijn, scampi's, zwarte peper</div></div><div class="menu-item-price">€23,00</div><button class="add-to-cart" onclick="addToCart(this,'🍤 Paesana agli Scampi',23.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🐟 Tonijn</div><div class="menu-item-desc" data-tx="f002">Kerstomatensaus, ajuin, kappers, olijven, tonijn, peterselie, zwarte peper, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🐟 Tonijn',17.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🐟🥦 Broccoli met Tonijn</div><div class="menu-item-desc" data-tx="f003">Tomatensaus, verse room, broccoli, tonijn, zwarte peper, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><button class="add-to-cart" onclick="addToCart(this,'🐟🥦 Broccoli met Tonijn',17.00)" aria-label="Toevoegen">+</button></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🐟 Tonijn</div><div class="menu-item-desc" data-tx="f002">Kerstomatensaus, ajuin, kappers, olijven, tonijn, peterselie, zwarte peper, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🐟 Tonijn',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🐟 Tonijn',23)" aria-label="KV bestellen">+ KV</button></div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🐟🥦 Broccoli met Tonijn</div><div class="menu-item-desc" data-tx="f003">Tomatensaus, verse room, broccoli, tonijn, zwarte peper, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€17,00<span class="menu-item-kv">KV €23</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🐟🥦 Broccoli met Tonijn',17.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🐟🥦 Broccoli met Tonijn',23)" aria-label="KV bestellen">+ KV</button></div></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🐟 Alla Puttanesca</div><div class="menu-item-desc" data-tx="f004">Kerstomatensaus, olijven, kappers, look, ajuin, ansjovis, basilicum, peterselie, zwarte peper, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€18,00</div><button class="add-to-cart" onclick="addToCart(this,'🐟 Alla Puttanesca',18.00)" aria-label="Toevoegen">+</button></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🍤🎃 Pompoen met Scampi</div><div class="menu-item-desc" data-tx="f005">Pompoen, look, ajuin, verse room, kerstomaten, scampi, peterselie, pilipili, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€18,00</div><button class="add-to-cart" onclick="addToCart(this,'🍤🎃 Pompoen met Scampi',18.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🐟🥦 Marinara</div><div class="menu-item-desc" data-tx="f006">Kerstomatensaus, look, ajuin, olijven, kappers, ansjovis, broccoli, basilicum, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€18,00<span class="menu-item-kv">KV €24</span></div><button class="add-to-cart" onclick="addToCart(this,'🐟🥦 Marinara',18.00)" aria-label="Toevoegen">+</button></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🐟🥦 Marinara</div><div class="menu-item-desc" data-tx="f006">Kerstomatensaus, look, ajuin, olijven, kappers, ansjovis, broccoli, basilicum, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€18,00<span class="menu-item-kv">KV €24</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🐟🥦 Marinara',18.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🐟🥦 Marinara',24)" aria-label="KV bestellen">+ KV</button></div></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🦑🦀🐚 Zeevruchten (Frutti di Mare)</div><div class="menu-item-desc" data-tx="f007">Kerstomatensaus, look, peterselie, zeevruchten, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€18,00</div><button class="add-to-cart" onclick="addToCart(this,'🦑🦀🐚 Zeevruchten (Frutti di Mare)',18.00)" aria-label="Toevoegen">+</button></div>
-        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🍤 Scampi</div><div class="menu-item-desc" data-tx="f008">Kerstomatensaus, look, peterselie, courgettes, scampi's, PARMIGIANO REGGIANO D.O.P, zwarte peper</div></div><div class="menu-item-price">€18,00<span class="menu-item-kv">KV €24</span></div><button class="add-to-cart" onclick="addToCart(this,'🍤 Scampi',18.00)" aria-label="Toevoegen">+</button></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🍤 Scampi</div><div class="menu-item-desc" data-tx="f008">Kerstomatensaus, look, peterselie, courgettes, scampi's, PARMIGIANO REGGIANO D.O.P, zwarte peper</div></div><div class="menu-item-price">€18,00<span class="menu-item-kv">KV €24</span></div><div class="menu-item-buttons"><button class="btn-single" onclick="addToCart(this,'🍤 Scampi',18.00)" aria-label="Toevoegen">+</button><button class="btn-kv" onclick="addToCart(this,'KV 🍤 Scampi',24)" aria-label="KV bestellen">+ KV</button></div></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🍤🦑🐚 Zeevruchten & Scampi</div><div class="menu-item-desc" data-tx="f009">Kerstomatensaus, look, peterselie, grote scampi's, zeevruchten, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€18,00</div><button class="add-to-cart" onclick="addToCart(this,'🍤🦑🐚 Zeevruchten & Scampi',18.00)" aria-label="Toevoegen">+</button></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🍤 Scampi met Linguine</div><div class="menu-item-desc" data-tx="f010">Kerstomatensaus, look, peterselie, scampi's, zwarte peper</div></div><div class="menu-item-price">€18,00</div><button class="add-to-cart" onclick="addToCart(this,'🍤 Scampi met Linguine',18.00)" aria-label="Toevoegen">+</button></div>
         <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">🐟 Zalm</div><div class="menu-item-desc" data-tx="f011">Zalm, ajuin, room, broccoli, curcuma, zwarte peper, PARMIGIANO REGGIANO D.O.P</div></div><div class="menu-item-price">€19,00</div><button class="add-to-cart" onclick="addToCart(this,'🐟 Zalm',19.00)" aria-label="Toevoegen">+</button></div>
@@ -3575,31 +3611,70 @@ function setLang(lang) {
 const cart = [];  // [{name, price, qty}]
 
 function addToCart(btn, name, price) {
-  const existing = cart.find(i => i.name === name);
+  var existing = cart.find(function(i) { return i.name === name; });
   if (existing) {
     existing.qty++;
   } else {
-    cart.push({ name, price, qty: 1 });
+    cart.push({ name: name, price: price, qty: 1 });
   }
   renderCart();
+
   // Show bar if hidden
-  const bar = document.getElementById('cart-bar');
+  var bar = document.getElementById('cart-bar');
   bar.classList.remove('hidden');
-  // Add bottom padding so content isn't hidden behind cart bar
   var tabH = document.getElementById('cart-tab') ? document.getElementById('cart-tab').offsetHeight : 58;
   document.body.style.paddingBottom = tabH + 'px';
+
   // Bounce the badge
-  const badge = document.getElementById('cart-count-badge');
+  var badge = document.getElementById('cart-count-badge');
   badge.classList.remove('cart-bounce');
   void badge.offsetWidth;
   badge.classList.add('cart-bounce');
-  // Flash the button
+
+  // Remember original label (+ or + KV)
+  var isKV = btn.classList.contains('btn-kv');
+  var originalLabel = btn.textContent;
+  var originalBg = btn.style.background;
+
+  // Flash button to checkmark
   btn.textContent = '✓';
-  btn.style.background = 'var(--olive, #5C6B3A)';
-  setTimeout(() => {
-    btn.textContent = '+';
-    btn.style.background = '';
+  btn.style.background = '#5C6B3A';
+  setTimeout(function() {
+    btn.textContent = originalLabel;
+    btn.style.background = originalBg;
   }, 700);
+
+  // Fly-to-cart animation
+  var btnRect = btn.getBoundingClientRect();
+  var cartBar = document.getElementById('cart-bar');
+  var cartRect = cartBar ? cartBar.getBoundingClientRect() : null;
+
+  var fly = document.createElement('div');
+  fly.className = isKV ? 'fly-item fly-kv' : 'fly-item';
+  fly.textContent = isKV ? '+ KV' : '+';
+  fly.style.left = (btnRect.left + btnRect.width / 2 - 14) + 'px';
+  fly.style.top  = (btnRect.top  + btnRect.height / 2 - 14) + 'px';
+  document.body.appendChild(fly);
+
+  // Animate towards cart bar
+  var targetX = cartRect ? (cartRect.left + 30) : (window.innerWidth / 2);
+  var targetY = cartRect ? (cartRect.top + cartRect.height / 2) : (window.innerHeight - 30);
+  var startX  = btnRect.left + btnRect.width / 2 - 14;
+  var startY  = btnRect.top  + btnRect.height / 2 - 14;
+
+  fly.style.transition = 'left 0.55s cubic-bezier(0.4,0,0.2,1), top 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.55s ease, transform 0.55s ease';
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      fly.style.left    = targetX + 'px';
+      fly.style.top     = targetY + 'px';
+      fly.style.opacity = '0';
+      fly.style.transform = 'scale(0.3)';
+    });
+  });
+
+  setTimeout(function() {
+    if (fly.parentNode) fly.parentNode.removeChild(fly);
+  }, 600);
 }
 
 function changeQty(idx, delta) {
@@ -4190,7 +4265,7 @@ if (window.netlifyIdentity) {
         if (kvBtn) {
           (function(n, p) {
             kvBtn.addEventListener('click', function() {
-              if (typeof addToCart === 'function') addToCart(this, n + ' KV', p);
+              if (typeof addToCart === 'function') addToCart(this, 'KV ' + n, p);
             });
           })(nm, kvPrice);
         }
