@@ -51,6 +51,7 @@ collections:
               - { label: "Ingredients EN", name: "desc_en", widget: "text" }
               - { label: "Prijs (€) — laat leeg als alleen KV", name: "price", widget: "number", value_type: "float", min: 0, max: 100, step: 0.50, required: false, default: 0 }
               - { label: "KV prijs (bijv: KV €23 — vul dit in als het gerecht alleen in KV verkocht wordt)", name: "kv", widget: "string", required: false, hint: "Vul hier de KV prijs in. Als het gerecht ALLEEN als KV verkocht wordt, laat dan de gewone prijs leeg." }
+              - { label: "Uitverkocht / Sold out", name: "sold_out", widget: "boolean", default: false, required: false, hint: "Zet aan als dit gerecht tijdelijk niet beschikbaar is" }
 
       # ── MENU: VEGETARISCH ─────────────────────────────────────────────────
       - name: "menu_vegetarisch"
@@ -67,6 +68,7 @@ collections:
               - { label: "Ingredients EN", name: "desc_en", widget: "text" }
               - { label: "Prijs (€) — laat leeg als alleen KV", name: "price", widget: "number", value_type: "float", min: 0, max: 100, step: 0.50, required: false, default: 0 }
               - { label: "KV prijs (optioneel)", name: "kv", widget: "string", required: false, hint: "Laat leeg als er geen koppelverkoop is" }
+              - { label: "Uitverkocht / Sold out", name: "sold_out", widget: "boolean", default: false, required: false, hint: "Zet aan als dit gerecht tijdelijk niet beschikbaar is" }
 
       # ── MENU: VLEES ───────────────────────────────────────────────────────
       - name: "menu_vlees"
@@ -83,6 +85,7 @@ collections:
               - { label: "Ingredients EN", name: "desc_en", widget: "text" }
               - { label: "Prijs (€) — laat leeg als alleen KV", name: "price", widget: "number", value_type: "float", min: 0, max: 100, step: 0.50, required: false, default: 0 }
               - { label: "KV prijs (optioneel)", name: "kv", widget: "string", required: false, hint: "Laat leeg als er geen koppelverkoop is" }
+              - { label: "Uitverkocht / Sold out", name: "sold_out", widget: "boolean", default: false, required: false, hint: "Zet aan als dit gerecht tijdelijk niet beschikbaar is" }
 
       # ── MENU: VIS ─────────────────────────────────────────────────────────
       - name: "menu_vis"
@@ -99,6 +102,7 @@ collections:
               - { label: "Ingredients EN", name: "desc_en", widget: "text" }
               - { label: "Prijs (€) — laat leeg als alleen KV", name: "price", widget: "number", value_type: "float", min: 0, max: 100, step: 0.50, required: false, default: 0 }
               - { label: "KV prijs (optioneel)", name: "kv", widget: "string", required: false, hint: "Laat leeg als er geen koppelverkoop is" }
+              - { label: "Uitverkocht / Sold out", name: "sold_out", widget: "boolean", default: false, required: false, hint: "Zet aan als dit gerecht tijdelijk niet beschikbaar is" }
 
       # ── MENU: SUPPLEMENTEN ────────────────────────────────────────────────
       - name: "menu_extra"
