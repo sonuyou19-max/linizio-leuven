@@ -20,7 +20,8 @@
       "desc_nl": "Tomatensaus, verse room, verse tomaten, PARMIGIANO REGGIANO D.O.P, peterselie, zwarte peper",
       "desc_en": "Tomato sauce, fresh cream, fresh tomatoes, PARMIGIANO REGGIANO D.O.P, parsley, black pepper",
       "price": "12.50",
-      "kv": ""
+      "kv": "",
+      "sold_out": true
     },
     {
       "name": "🧄 Look (Linguine)",
