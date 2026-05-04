@@ -818,11 +818,22 @@ footer a[href^="tel:"]:hover {
 .contact-card:hover, .contact-card:active { background: rgba(196,98,45,0.12); }
 
 .contact-icon-box {
-  width: 38px; height: 38px;
+  width: 56px;
+  height: 56px;
   background: var(--terracotta);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
   flex-shrink: 0;
+  border-radius: 2px;
+}
+
+.contact-icon-box svg {
+  width: 28px;
+  height: 28px;
+  fill: #fff;
+  pointer-events: none;
 }
 
 .contact-lbl {
@@ -2500,15 +2511,15 @@ body.cart-open {
       <div class="reveal">
         <div class="contact-cards">
           <a href="tel:+3216202056" class="contact-card">
-            <div class="contact-icon-box">📞</div>
+            <div class="contact-icon-box"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.58.57 1 1 0 011 1V21a1 1 0 01-1 1A17 17 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.58 1 1 0 01-.24 1.01l-2.21 2.2z"/></svg></div>
             <div><span class="contact-lbl" data-tx="contact-phone-label">Telefoon</span><span class="contact-val">016 / 20.20.56</span></div>
           </a>
           <a href="tel:+32485736362" class="contact-card">
-            <div class="contact-icon-box">📱</div>
+            <div class="contact-icon-box"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 2H7a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2zm-5 18a1 1 0 110-2 1 1 0 010 2zm5-4H7V4h10v12z"/></svg></div>
             <div><span class="contact-lbl" data-tx="contact-wa-label">WhatsApp / SMS</span><span class="contact-val">0485 / 73.63.62</span></div>
           </a>
           <a href="javascript:void(0)" onclick="window.open('https://www.facebook.com/Linizioleuvenpastabar/','_blank')" target="_blank" class="contact-card">
-            <div class="contact-icon-box">💬</div>
+            <div class="contact-icon-box"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78a.64.64 0 00.89.57l1.98-.87a.64.64 0 01.43-.04c.97.26 2 .4 3.24.4 5.64 0 10-4.13 10-9.7S17.64 2 12 2zm5.76 7.67l-2.93 4.65a1.5 1.5 0 01-2.16.4l-2.33-1.74a.6.6 0 00-.72 0l-3.14 2.38c-.42.32-.97-.18-.69-.63l2.93-4.65a1.5 1.5 0 012.16-.4l2.33 1.74a.6.6 0 00.72 0l3.14-2.38c.42-.32.97.18.69.63z"/></svg></div>
             <div><span class="contact-lbl" data-tx="contact-fb-label">Facebook Messenger</span><span class="contact-val" data-tx="contact-fb-val">L'inizio Leuven</span></div>
           </a>
         </div>
