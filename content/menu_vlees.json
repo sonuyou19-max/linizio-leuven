@@ -20,7 +20,7 @@
       "desc_en": "Tomato sauce, minced beef, minced pork, celery, carrots, onion, nutmeg, pepper, butter, PARMIGIANO REGGIANO D.O.P",
       "price": "16.00",
       "kv": "KV €23",
-      "sold_out": true
+      "sold_out": false
     },
     {
       "name": "🥩 Arrabbiata con Salame",
