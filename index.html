@@ -3982,6 +3982,32 @@ function closeOrderModal(e) {
 
 function sendWhatsApp() {
   var isEN = (typeof currentLang !== 'undefined' && currentLang === 'en');
+
+  // ── Order window check (Belgium time / Europe/Brussels) ──────────────────
+  try {
+    var now = new Date();
+    // Get current time in Belgium regardless of customer's device timezone
+    var belgiumTime = new Date(now.toLocaleString('en-GB', { timeZone: 'Europe/Brussels' }));
+    var h = belgiumTime.getHours();
+    var m = belgiumTime.getMinutes();
+    var totalMins = h * 60 + m;
+
+    var inLunch  = (totalMins >= 9*60+30  && totalMins <  10*60+30);
+    var inDinner = (totalMins >= 13*60+30 && totalMins <  16*60+30);
+
+    if (!inLunch && !inDinner) {
+      var warningMsg = isEN
+        ? 'Orders via WhatsApp are only accepted during:\n\n• 09:30 – 10:30\n• 13:30 – 16:30\n\nPlease try again during these hours.\nYou can still browse the menu and prepare your order!'
+        : 'Bestellingen via WhatsApp worden alleen aanvaard tijdens:\n\n• 09:30 – 10:30\n• 13:30 – 16:30\n\nProbeer opnieuw tijdens deze uren.\nJe kan de menukaart al bekijken en je bestelling alvast samenstellen!';
+      alert(warningMsg);
+      return;
+    }
+  } catch(e) {
+    // If timezone conversion fails, allow the order through
+    console.warn('Timezone check failed:', e);
+  }
+  // ─────────────────────────────────────────────────────────────────────────
+
   var total = cart.reduce(function(s, i) { return s + i.price * i.qty; }, 0);
   var fmt = function(n) { return '€' + n.toFixed(2).replace('.', ','); };
 
