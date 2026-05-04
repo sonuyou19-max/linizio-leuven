@@ -19,7 +19,8 @@
       "desc_nl": "Tomatensaus, gehakt rundsvlees, gehakt varkensvlees, selder, wortels, ajuin, muskaatnoot, peper, boter, PARMIGIANO REGGIANO D.O.P",
       "desc_en": "Tomato sauce, minced beef, minced pork, celery, carrots, onion, nutmeg, pepper, butter, PARMIGIANO REGGIANO D.O.P",
       "price": "16.00",
-      "kv": "KV €23"
+      "kv": "KV €23",
+      "sold_out": true
     },
     {
       "name": "🥩 Arrabbiata con Salame",
