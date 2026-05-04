@@ -4249,8 +4249,8 @@ if (window.netlifyIdentity) {
 
   /* ── GENERAL ── */
   fetchJSON('/content/general.json', function(d) {
-    if (d.phone1) document.querySelectorAll('a[href^="tel:+3216"]').forEach(function(e){ e.textContent = d.phone1; });
-    if (d.phone2) document.querySelectorAll('a[href^="tel:+32485"]').forEach(function(e){ e.textContent = d.phone2; });
+    if (d.phone1) document.querySelectorAll('a[href^="tel:+3216"] .contact-val, a[onclick*="3216"] .contact-val').forEach(function(e){ e.textContent = d.phone1; });
+    if (d.phone2) document.querySelectorAll('a[href^="tel:+32485"] .contact-val, a[onclick*="32485"] .contact-val').forEach(function(e){ e.textContent = d.phone2; });
   });
 
   /* ── HOURS ── */
