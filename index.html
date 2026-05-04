@@ -2120,6 +2120,39 @@ body.cart-open {
   60%  { transform: scale(0.7);  opacity: 0.9; }
   100% { transform: scale(0.2);  opacity: 0; }
 }
+
+/* ── SOLD OUT ── */
+.menu-item.sold-out {
+  opacity: 0.55;
+}
+
+.menu-item.sold-out .menu-item-name {
+  text-decoration: line-through;
+  text-decoration-color: rgba(28,18,8,0.3);
+}
+
+.sold-out-badge {
+  display: inline-block;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #8B3A3A;
+  padding: 2px 7px;
+  border-radius: 3px;
+  margin-top: 4px;
+  white-space: nowrap;
+}
+
+.menu-item.sold-out .add-to-cart,
+.menu-item.sold-out .btn-single,
+.menu-item.sold-out .btn-kv {
+  opacity: 0.35;
+  pointer-events: none;
+  cursor: not-allowed;
+}
 </style>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -2964,6 +2997,7 @@ const TRANSLATIONS = {
     'footer-col2-title': 'Informatie',
     'footer-bottom1': '© 2025 L\'inizio Pasta Bar · Leuven · Alle prijzen BTW inclusief',
     'footer-bottom2': 'Vers bereid · Geen levering · Afhalen aan het raam',
+    'sold-out-badge': 'Uitverkocht',
     'pickup-label': 'Gewenste ophaaltijd',
     'pickup-placeholder': '-- Kies een tijdstip --',
     'optgroup-lunch': 'Middag / Lunch',
@@ -3227,6 +3261,7 @@ const TRANSLATIONS = {
     'footer-col2-title': 'Information',
     'footer-bottom1': '© 2025 L\'inizio Pasta Bar · Leuven · All prices include VAT',
     'footer-bottom2': 'Made fresh · No delivery · Takeaway at the window',
+    'sold-out-badge': 'Sold out',
     'pickup-label': 'Preferred pickup time',
     'pickup-placeholder': '-- Choose a time --',
     'optgroup-lunch': 'Lunch',
@@ -4205,6 +4240,7 @@ if (window.netlifyIdentity) {
       var hasKV = kvPrice > 0;
 
       var isAddon = (item.name||'').indexOf('Extra Burrata') !== -1;
+      var isSoldOut = item.sold_out === true || item.sold_out === 'true';
       var descKey = 'cms-' + tabId + '-' + Math.random().toString(36).slice(2);
 
       if (typeof TRANSLATIONS !== 'undefined') {
@@ -4213,8 +4249,11 @@ if (window.netlifyIdentity) {
       }
 
       var div = document.createElement('div');
-      div.className = isAddon ? 'menu-item menu-item-addon' : 'menu-item';
+      var divClass = isAddon ? 'menu-item menu-item-addon' : 'menu-item';
+      if (isSoldOut) divClass += ' sold-out';
+      div.className = divClass;
       var badge = isAddon ? ' <span class="addon-badge" data-tx="addon-badge">+ Toevoeging</span>' : '';
+      var soldOutBadge = isSoldOut ? '<span class="sold-out-badge" data-tx="sold-out-badge">Uitverkocht</span>' : '';
 
       // Build buttons — show KV button if dish has KV price
       var btnHtml = '';
@@ -4232,7 +4271,7 @@ if (window.netlifyIdentity) {
           '<div class="menu-item-name">' + (item.name||'') + badge + '</div>' +
           '<div class="menu-item-desc" data-tx="' + descKey + '">' + (item.desc_nl||'') + '</div>' +
         '</div>' +
-        '<div class="menu-item-price">' + (isAddon && hasPrice ? '+ ' : '') + fmt + kv + '</div>' +
+        '<div class="menu-item-price">' + (isAddon && hasPrice ? '+ ' : '') + fmt + kv + soldOutBadge + '</div>' +
         btnHtml;
 
       var nm = item.name || '';
