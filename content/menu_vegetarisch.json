@@ -6,7 +6,7 @@
       "desc_en": "Tomato sauce, fresh tomatoes, onion, PARMIGIANO REGGIANO D.O.P, basil",
       "price": "11.50",
       "kv": "",
-      "sold_out": true
+      "sold_out": false
     },
     {
       "name": "🍅 Napoli al Pomodoro Fresco (Rigatoni of Linguine)",
@@ -21,7 +21,7 @@
       "desc_en": "Tomato sauce, fresh cream, fresh tomatoes, PARMIGIANO REGGIANO D.O.P, parsley, black pepper",
       "price": "12.50",
       "kv": "",
-      "sold_out": true
+      "sold_out": false
     },
     {
       "name": "🧄 Look (Linguine)",
@@ -29,7 +29,7 @@
       "desc_en": "Olive oil, garlic, parsley, peperoncino chilli, PARMIGIANO REGGIANO D.O.P",
       "price": "13.50",
       "kv": "",
-      "sold_out": true
+      "sold_out": false
     },
     {
       "name": "🧄🍅 Arrabbiata Senza Salame",
