@@ -29,7 +29,7 @@
       "desc_en": "Olive oil, garlic, parsley, peperoncino chilli, PARMIGIANO REGGIANO D.O.P",
       "price": "13.50",
       "kv": "",
-      "sold_out": true
+      "sold_out": false
     },
     {
       "name": "🧄🍅 Arrabbiata Senza Salame",
