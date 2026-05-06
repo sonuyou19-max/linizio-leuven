@@ -12,8 +12,8 @@
       "desc_nl": "Linguine met olijfolie, broccoli, broccolicrème, knoflook, geraspte Parmezaanse kaas en peper",
       "desc_en": "Linguine with olive oil, broccoli, broccoli cream, garlic, grated Parmesan and pepper",
       "price": 16,
-      "kv": "",
-      "sold_out": false
+      "kv": "23",
+      "sold_out": true
     },
     {
       "name": "🎃 Gnocchi met Pompoen",
