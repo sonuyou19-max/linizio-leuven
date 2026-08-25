@@ -2,7 +2,7 @@
   "items": [
     {
       "price": 6,
-      "sold_out": true,
+      "sold_out": false,
       "desc_nl": "Voeg burrata toe aan elk recept (behalve visgerechten) voor extra romigheid\n\n“Burrata – Verse Italiaanse kaas uit Puglia met een zachte mozzarellabuitenkant en een romige, smeuïge kern. Een echte Italiaanse specialiteit.”",
       "name": "🧀 EXTRA BURRATA?!",
       "desc_en": "Add burrata to any recipe (except fish dishes) for extra creaminess “Burrata – A premium fresh Italian cheese from Puglia, featuring a delicate mozzarella shell filled with a luscious, creamy heart. Rich, smooth, and indulgent.”"
@@ -46,7 +46,7 @@
     },
     {
       "price": 16,
-      "sold_out": true,
+      "sold_out": false,
       "name": "🍅 BURRATA CON POMODORO FRESCO",
       "desc_nl": "🍅 Burrata \nTomaten (geel of rood afhankelijk van seizoen), burrata, sjalot, extra vierge olijfolie, chilipeper, verse basilicum, zout",
       "desc_en": " Burrata\nTomatoes (yellow or red depending on season), burrata, shallot, extra virgin olive oil, chilli, fresh basil, salt"
