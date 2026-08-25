@@ -6,7 +6,7 @@
       "desc_en": "Add burrata to any recipe (except fish dishes) for extra creaminess\n\n“Burrata – A premium fresh Italian cheese from Puglia, featuring a delicate mozzarella shell filled with a luscious, creamy heart. Rich, smooth, and indulgent.”",
       "price": 6,
       "kv": "",
-      "sold_out": true
+      "sold_out": false
     },
     {
       "price": 17,
@@ -36,7 +36,7 @@
       "desc_en": "Tomatoes (yellow or red depending on season), burrata, shallot, extra virgin olive oil, chilli, fresh basil, salt",
       "price": "16.00",
       "kv": "",
-      "sold_out": true
+      "sold_out": false
     },
     {
       "name": "🎃 BURRATA & SPECK ALTO ADIGE & POMPOEN CREME",
@@ -44,7 +44,7 @@
       "desc_en": "Pumpkin, cream, crispy Speck Alto Adige strips, extra virgin olive oil, shallot, burrata, salt, pepper",
       "price": 18,
       "kv": "",
-      "sold_out": true
+      "sold_out": false
     },
     {
       "name": "🎃 POMPOEN MET GNOCCHI",
