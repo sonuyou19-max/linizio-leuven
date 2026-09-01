@@ -17,7 +17,7 @@
     },
     {
       "price": 21,
-      "sold_out": false,
+      "sold_out": true,
       "name": "🐚NERO SEPPIA MET VONGOLE ",
       "desc_en": "🐚Nero Seppia MET VONGOLE\nSquid ink spaghetti, cherry tomatoes, garlic, extra virgin olive oil, white wine, parsley, sea salt, black pepper",
       "desc_nl": "🐚Nero Seppia MET VONGOLE\nSpaghetti al nero di seppia, kers tomaatjes, knoflook, extra vierge olijfolie, witte wijn, peterselie, zeezout, zwarte peper"
@@ -101,11 +101,11 @@
       "desc_en": "Olive oil, garlic, parsley, cherry tomatoes, clams",
       "price": "20.00",
       "kv": "",
-      "sold_out": false
+      "sold_out": true
     },
     {
       "price": 20,
-      "sold_out": false,
+      "sold_out": true,
       "name": "🐚 VONGOLE MET GNOCCHI",
       "desc_nl": "\nOlijfolie, look, peterselie, kerstomaatjes, vongole, schelpen",
       "desc_en": "🐚 VONGOLE con GNOCCHI\nOlive oil, garlic, parsley, cherry tomatoes, vongole, clams"
