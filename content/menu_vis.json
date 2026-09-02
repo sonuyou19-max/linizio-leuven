@@ -120,7 +120,7 @@
     },
     {
       "price": 18,
-      "sold_out": true,
+      "sold_out": false,
       "name": "🦑🦀🐚ZEEVRUCHTEN” FRUTTI DI MARE” ",
       "desc_nl": "\nKers tomatensaus, olijven olie,look, peterselie, zeevruchten, PARMIGIANO REGGIANO D.O.P\n",
       "desc_en": "Cherry tomato sauce, olive oil, garlic, parsley, seafood, PARMIGIANO REGGIANO D.O.P"
@@ -131,7 +131,7 @@
       "desc_en": "Cherry tomato sauce, garlic, parsley, large king prawns, seafood mix, PARMIGIANO REGGIANO D.O.P",
       "price": "18.00",
       "kv": "",
-      "sold_out": true
+      "sold_out": false
     }
   ]
 }
