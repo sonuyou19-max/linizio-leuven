@@ -67,16 +67,16 @@
       "kv": "KV €23,00🥡🥡 medium bekers"
     },
     {
-      "price": 17,
-      "sold_out": true,
+      "price": 18,
+      "sold_out": false,
       "name": "🥩CASA “STOOFVLEES RAGÙ OP NAPOLITAANSE WIJZE ",
       "desc_nl": "Tomatensaus, stoofvlees met 'ragu saus op napolitaanse wijze', ajuin, ricotta, basilicum, PARMIGIANO REGGIANO D.O.P",
       "desc_en": "Tomato sauce, stew with 'ragu sauce in Neapolitan style', onion, ricotta, basil, PARMIGIANO REGGIANO D.O.P",
       "kv": "KV €24,00 🥡🥡 medium bekers"
     },
     {
-      "price": 17,
-      "sold_out": true,
+      "price": 18,
+      "sold_out": false,
       "name": "🥩CASA “STOOFVLEES RAGÙ OP NAPOLITAANSE WIJZE MET “GNOCCHI “",
       "desc_nl": "Tomatensaus, stoofvlees met 'ragu saus op napolitaanse wijze', ajuin, ricotta, basilicum, PARMIGIANO REGGIANO D.O.P",
       "desc_en": "Tomato sauce, stew with 'ragu sauce in Neapolitan style', onion, ricotta, basil, PARMIGIANO REGGIANO D.O.P"
@@ -118,7 +118,7 @@
     },
     {
       "price": 18,
-      "sold_out": true,
+      "sold_out": false,
       "name": "🥩 🧅 GENOVESE",
       "desc_nl": "🥩 🧅 Genovese\nTraditionele Napolitaanse saus van langzaam gestoofde uien met rundvlees, wortel en selder. Geserveerd met Parmezaan",
       "desc_en": "🥩 🧅 Genovese\nTraditional Neapolitan sauce of slow-braised onions with beef, carrot and celery. Served with Parmesan"
